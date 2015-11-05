@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Classificados</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body><center>  
+        <h1>Classificados</h1>
+   
+        <form action="/delete_multiple" method="post">
+            <table border="1" RULES=NONE FRAME=BOX >
+                {{#classificados}}
+                <tr> 
+                    <td> <input type="checkbox" name="id" value="{{id}}"> </td> 
+                    <td> <a href="/delete/{{id}}"> Deletar </a> </td> 
+                    <td>{{descricao}}</td> 
+                    <td>{{contato}}</td>
+                </tr>
+                {{/classificados}}
+            </table> <br>
+            <input type="submit" value="Excluir (selecione os checkboxes)">
+        </form>
+        <br>
+        <a href="/screen_insert" class="button"> Adicionar nova classificado </a>
+    </center>
+        
+    </body>
+</html>
