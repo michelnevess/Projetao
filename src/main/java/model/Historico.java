@@ -5,15 +5,18 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author michel
  */
 public class Historico {
     private int id, pk;
-    private String nome_campo, nome_tabela, valor_antigo, valor_novo, data_modificacao, operacao;
-
-    public Historico(int id, int pk, String nome_campo, String nome_tabela, String valor_antigo, String valor_novo, String data_modificacao, String operacao) {
+    private String nome_campo, nome_tabela, valor_antigo, valor_novo, operacao;
+    private Date data_modificacao;
+    
+    public Historico(int id, int pk, String nome_campo, String nome_tabela, String valor_antigo, String valor_novo, Date data_modificacao, String operacao) {
         this.id = id;
         this.pk = pk;
         this.nome_campo = nome_campo;
@@ -22,6 +25,10 @@ public class Historico {
         this.valor_novo = valor_novo;
         this.data_modificacao = data_modificacao;
         this.operacao = operacao;
+    }
+
+    public Historico() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {
@@ -72,11 +79,11 @@ public class Historico {
         this.valor_novo = valor_novo;
     }
 
-    public String getData_modificacao() {
+    public Date getData_modificacao() {
         return data_modificacao;
     }
 
-    public void setData_modificacao(String data_modificacao) {
+    public void setData_modificacao(Date data_modificacao) {
         this.data_modificacao = data_modificacao;
     }
 
