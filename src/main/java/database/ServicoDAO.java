@@ -12,18 +12,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Peca;
-import model.Servico_peca;
+import model.Servico;
 
 /**
  *
  * @author michel
  */
-public class Servico_pecaDAO {
+public class ServicoDAO {
     
-    public Servico_pecaDAO(){
+    public ServicoDAO(){
         
     }
+    
     public void insert(Servico_peca servico_peca) {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
@@ -89,5 +89,4 @@ public class Servico_pecaDAO {
         }
         return servico_peca;
     }
-    
 }
