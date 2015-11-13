@@ -26,8 +26,9 @@ public class EnderecoDAO {
     
     public void delete(int id) throws SQLException {
         Connection conexao = new Conexao().getConexao();
-        try (PreparedStatement preparedStatement = conexao.prepareStatement("DELETE FROM endereco WHERE id = ?")) {
-            preparedStatement.setInt(1, id);
+        try (PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE endereco SET ativo = ? WHERE id = ?;")) {;
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
         }
         conexao.close();
@@ -114,6 +115,10 @@ public class EnderecoDAO {
             preparedStatement.executeUpdate();
          
         }
+    }
+
+    private Object Endereco() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

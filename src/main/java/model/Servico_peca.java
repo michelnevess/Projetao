@@ -12,14 +12,20 @@ package model;
 public class Servico_peca {
     
     private int id, quantidade;
-    private Servico servico;
+    private int servico;
     private Peca peca;
+    private double valor;
 
-    public Servico_peca(int id, int quantidade, Servico servico, Peca peca) {
+    public Servico_peca(int id, int quantidade, int servico, Peca peca, double valor) {
         this.id = id;
         this.quantidade = quantidade;
         this.servico = servico;
         this.peca = peca;
+        this.valor = valor;
+    }
+
+    public Servico_peca() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {
@@ -38,11 +44,11 @@ public class Servico_peca {
         this.quantidade = quantidade;
     }
 
-    public Servico getServico() {
+    public int getServico() {
         return servico;
     }
 
-    public void setServico(Servico servico) {
+    public void setServico(int servico) {
         this.servico = servico;
     }
 
@@ -53,8 +59,14 @@ public class Servico_peca {
     public void setPeca(Peca peca) {
         this.peca = peca;
     }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
     
-    
-    
-    
+        
 }
