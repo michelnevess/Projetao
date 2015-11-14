@@ -45,7 +45,7 @@ public class Servico_pecaDAO {
                         preparedStatement.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Servico_pecaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conexao != null) {
@@ -54,7 +54,7 @@ public class Servico_pecaDAO {
                         conexao.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Servico_pecaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -88,6 +88,18 @@ public class Servico_pecaDAO {
             }
         }
         return servico_peca;
+    }
+    public void update(Servico_peca servico_peca) throws SQLException {
+         
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico_peca SET quantidade = ?, servico_id = ?, peca_id = ?, valor = ? WHERE id = ?;")) {;
+            preparedStatement.setInt(1, servico_peca.getQuantidade());
+            preparedStatement.setInt(2, servico_peca.getServico());
+            preparedStatement.setInt(3, servico_peca.getPeca().getId());
+            preparedStatement.setDouble(4, servico_peca.getValor());
+            preparedStatement.setInt(5, servico_peca.getId() );
+            preparedStatement.executeUpdate();
+         
+        }
     }
     
 }

@@ -57,7 +57,7 @@ public class FuncionarioDAO {
                         preparedStatement.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conexao != null) {
@@ -66,7 +66,7 @@ public class FuncionarioDAO {
                         conexao.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -101,5 +101,20 @@ public class FuncionarioDAO {
             }
         }
         return funcionario;
+    }
+    
+    public void update(Funcionario funcionario) throws SQLException {
+         
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE funcionario SET nome = ?, telefone = ?, email = ?, endereco_id = ?, cpf = ?, ativo = ? WHERE id = ?;")) {;
+            preparedStatement.setString(1, funcionario.getNome());
+            preparedStatement.setString(2, funcionario.getTelefone());
+            preparedStatement.setString(3, funcionario.getEmail());
+            preparedStatement.setInt(4, funcionario.getEndereco().getId());
+            preparedStatement.setString(5, funcionario.getCpf());
+            preparedStatement.setBoolean(6, funcionario.isAtivo());
+            preparedStatement.setInt(7, funcionario.getId() );
+            preparedStatement.executeUpdate();
+         
+        }
     }
 }

@@ -24,17 +24,20 @@ public class ServicoDAO {
         
     }
     
-    public void insert(Servico_peca servico_peca) {
+    public void insert(Servico servico) {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
         try {
             conexao = new Conexao().getConexao();
-            preparedStatement = conexao.prepareStatement("INSERT INTO servico_peca (quantidade, servico_id, peca_id, valor) VALUES (?, ?, ?, ?);");
-            preparedStatement.setInt(1, servico_peca.getQuantidade());
-            preparedStatement.setInt(2, servico_peca.getServico());
-            preparedStatement.setInt(3, servico_peca.getPeca().getId());
-            preparedStatement.setDouble(4, servico_peca.getValor());
+            preparedStatement = conexao.prepareStatement("INSERT INTO servico (descricao, valor, d_inicio, d_fim, pago, funcionario_id, cliente_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
+            preparedStatement.setString(1, servico.getDescricao());
+            preparedStatement.setDouble(2, servico.getValor());
+            preparedStatement.setDate(3, servico.getD_inicio());
+            preparedStatement.setDate(4, servico.getD_fim());
+            preparedStatement.setBoolean(4, servico.isPago());
+            preparedStatement.setInt(4, servico.getFuncionario().getId());
+            preparedStatement.setInt(4, servico.getCliente().getId());
             
         } catch (SQLException sqle) {
             throw new RuntimeException(sqle);
@@ -45,7 +48,7 @@ public class ServicoDAO {
                         preparedStatement.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conexao != null) {
@@ -54,19 +57,19 @@ public class ServicoDAO {
                         conexao.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ServicoDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
    
-    public ArrayList<Servico_peca> select() throws SQLException {
-        ArrayList<Servico_peca> vet = new ArrayList();
+    public ArrayList<Servico> select() throws SQLException {
+        ArrayList<Servico> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico_peca;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Servico_peca(resultSet.getInt("id"), resultSet.getInt("quantidade"), resultSet.getInt("servico_id"), new PecaDAO().selectById(resultSet.getInt("peca_id")), resultSet.getDouble("valor")));
+            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id"))));
         }
         preparedStatement.close();
         
@@ -74,19 +77,33 @@ public class ServicoDAO {
         return vet;
     }
 
-    public Servico_peca selectById(int id) throws SQLException {
-        Servico_peca servico_peca;
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico_peca WHERE servico_id = ?;")) {
+    public Servico selectById(int id) throws SQLException {
+        Servico servico;
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico WHERE servico_id = ?;")) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            servico_peca = new Servico_peca();
+            servico = new Servico();
             if (resultSet.next()) {
                 
-                servico_peca = new Servico_peca(resultSet.getInt("id"), resultSet.getInt("quantidade"), resultSet.getInt("servico_id"), new PecaDAO().selectById(resultSet.getInt("peca_id")), resultSet.getDouble("valor"));
+                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")));
             }else {
                 
             }
         }
-        return servico_peca;
+        return servico;
+    }
+    
+    public Servico ultimo() throws SQLException {
+        Servico ultimo = new Servico();
+        Connection conexao = new Conexao().getConexao();
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico ORDER BY id DESC LIMIT 1;");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            ultimo = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")));
+        }
+        preparedStatement.close();
+        
+        conexao.close();
+        return ultimo;
     }
 }

@@ -17,7 +17,7 @@ public class Servico {
     private String descricao;
     private double valor;
     private Date d_inicio, d_fim;
-    private boolean pago;
+    private boolean pago = false;
     private Funcionario funcionario;
     private Cliente cliente;
 
@@ -30,6 +30,10 @@ public class Servico {
         this.pago = pago;
         this.funcionario = funcionario;
         this.cliente = cliente;
+    }
+
+    public Servico() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

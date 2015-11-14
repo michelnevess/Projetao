@@ -58,7 +58,7 @@ public class ClienteDAO {
                         preparedStatement.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conexao != null) {
@@ -67,7 +67,7 @@ public class ClienteDAO {
                         conexao.close();
                     }
                 } catch (SQLException ex) {
-                    Logger.getLogger(ClassificadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -102,5 +102,23 @@ public class ClienteDAO {
             }
         }
         return cliente;
+    }
+    
+    public void update(Cliente cliente) throws SQLException {
+         
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE cliente SET nome = ?, telefone = ?, email = ?, endereco_id = ?, cpf = ?, cnpj = ?, fisico = ?, ativo = ? WHERE id = ?;")) {;
+            preparedStatement.setString(1, cliente.getNome());
+            preparedStatement.setString(2, cliente.getTelefone());
+            preparedStatement.setString(3, cliente.getEmail());
+            preparedStatement.setInt(4, cliente.getEndereco().getId());
+            preparedStatement.setString(5, cliente.getCpf());
+            preparedStatement.setString(6, cliente.getCnpj());
+            preparedStatement.setBoolean(7, cliente.isFisico());
+            preparedStatement.setBoolean(8, cliente.isAtivo());
+            preparedStatement.setInt(9, cliente.getId() );
+            preparedStatement.executeUpdate();
+         
+        }
+
     }
 }
