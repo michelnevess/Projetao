@@ -28,7 +28,7 @@ public class HistoricoListCommand extends Command {
                 map.put("historicos", historicos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HistoricoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

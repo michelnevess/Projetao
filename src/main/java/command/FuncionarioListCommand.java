@@ -28,7 +28,7 @@ public class FuncionarioListCommand extends Command {
                 map.put("funcionarios", funcionarios);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

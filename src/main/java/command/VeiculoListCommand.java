@@ -28,7 +28,7 @@ public class VeiculoListCommand extends Command {
                 map.put("veiculos", veiculos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VeiculoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

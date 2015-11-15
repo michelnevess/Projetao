@@ -28,7 +28,7 @@ public class ServicoListCommand extends Command {
                 map.put("servicos", servicos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

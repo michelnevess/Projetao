@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package command;
-
 
 import database.ClienteDAO;
 import database.FuncionarioDAO;
@@ -12,29 +6,26 @@ import database.PecaDAO;
 import database.ServicoDAO;
 import database.Servico_pecaDAO;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Peca;
 import model.Servico;
-import spark.QueryParamsMap;
+import model.Servico_peca;
 import spark.Request;
 import spark.Response;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import model.Peca;
-import model.Servico_peca;
 
 /**
  *
  * @author michel
  */
-public class ServicoInsertCommand extends Command {
-    
-    
+public class ServicoEditCommand extends Command {
 
-    public ServicoInsertCommand(Request request, Response response) throws SQLException {
-        super(request, response);     
-        
+    public ServicoEditCommand(Request request, Response response) throws SQLException {
+        super(request, response);
         
         Servico servico = new Servico();
         servico.setDescricao(request.queryParams("descricao"));
@@ -44,7 +35,9 @@ public class ServicoInsertCommand extends Command {
         servico.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente"))));
         servico.setFuncionario(new FuncionarioDAO().selectById(Integer.parseInt(request.queryParams("funcionario"))));
         
-        new ServicoDAO().insert(servico);
+        servico.setId(Integer.parseInt(request.queryParams("id")));
+        
+        new ServicoDAO().update(servico);
         
         for (int i = 0; i < Integer.parseInt(request.queryParams("quantidade")); i++){
             Servico_peca sp = new Servico_peca();
@@ -54,11 +47,13 @@ public class ServicoInsertCommand extends Command {
             sp.setQuantidade(Integer.parseInt(request.queryParams("unidade")));
             sp.setPeca(peca);
             sp.setValor(peca.getValor());
-            
-            new Servico_pecaDAO().insert(sp);
+            sp.setId(Integer.parseInt(request.queryParams("id2")));
+            new Servico_pecaDAO().update(sp);
         }
-        map.put("message", "Voce acaba de inserir o servico com sucesso!");
-    }    
-    
+        
+        
+            map.put("message", "Voce acaba de editar o Servico");
+        
+    }
 
 }

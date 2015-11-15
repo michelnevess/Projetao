@@ -28,7 +28,7 @@ public class EnderecoListCommand extends Command {
                 map.put("enderecos", enderecos);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnderecoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

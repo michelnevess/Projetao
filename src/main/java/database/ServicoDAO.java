@@ -106,4 +106,30 @@ public class ServicoDAO {
         conexao.close();
         return ultimo;
     }
+    
+    public void update(Servico servico) throws SQLException {
+         
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico SET descricao = ?, valor = ?, d_inicio = ?, d_fim = ?, funcionario_id = ?, cliente_id = ? WHERE id = ?;")) {;
+            preparedStatement.setString(1, servico.getDescricao());
+            preparedStatement.setDouble(2, servico.getValor());
+            preparedStatement.setDate(3, servico.getD_inicio());
+            preparedStatement.setDate(4, servico.getD_fim());
+            preparedStatement.setInt(6, servico.getFuncionario().getId());
+            preparedStatement.setInt(6, servico.getCliente().getId());
+            preparedStatement.setInt(7, servico.getId() );
+            preparedStatement.executeUpdate();
+         
+        }
+    }
+    
+    public void pago(int id) throws SQLException {
+         
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico SET pago = ? WHERE id = ?;")) {;
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+         
+        }
+    }
+    
 }

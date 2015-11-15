@@ -28,7 +28,7 @@ public class Servico_pecaListCommand extends Command {
                 map.put("servico_pecas", servico_pecas);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Servico_pecaListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

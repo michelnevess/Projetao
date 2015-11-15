@@ -28,7 +28,7 @@ public class ClienteListCommand extends Command {
                 map.put("clientes", clientes);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

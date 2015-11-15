@@ -14,7 +14,7 @@ public class Servico_peca {
     private int id, quantidade;
     private int servico;
     private Peca peca;
-    private double valor;
+    private double valor, total;
 
     public Servico_peca(int id, int quantidade, int servico, Peca peca, double valor) {
         this.id = id;
@@ -22,6 +22,7 @@ public class Servico_peca {
         this.servico = servico;
         this.peca = peca;
         this.valor = valor;
+        this.total = valor * quantidade;
     }
 
     public Servico_peca() {
@@ -42,6 +43,7 @@ public class Servico_peca {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+        this.total = this.valor * quantidade;
     }
 
     public int getServico() {
@@ -66,6 +68,11 @@ public class Servico_peca {
 
     public void setValor(double valor) {
         this.valor = valor;
+        this.total = valor * this.quantidade;
+    }
+
+    public double getTotal() {
+        return total;
     }
     
         
