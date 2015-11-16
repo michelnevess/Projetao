@@ -75,10 +75,10 @@ public class VeiculoDAO {
     public ArrayList<Veiculo> select() throws SQLException {
         ArrayList<Veiculo> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM veiculo;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM veiculo WHERE ativo = true;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Veiculo(resultSet.getInt("id"), resultSet.getString("modelo"), resultSet.getString("marca"), resultSet.getString("ano"), resultSet.getString("placa"), resultSet.getString("chassi"), resultSet.getBoolean("ativo"), new ClienteDAO().selectById(resultSet.getInt("cliente_id"))));
+            vet.add(new Veiculo(resultSet.getInt("id"), resultSet.getString("modelo"), resultSet.getString("marca"), resultSet.getString("ano"), resultSet.getString("placa"), resultSet.getString("chassi"), new ClienteDAO().selectById(resultSet.getInt("cliente_id"))));
         }
         preparedStatement.close();
         
@@ -94,7 +94,7 @@ public class VeiculoDAO {
             veiculo = new Veiculo();
             if (resultSet.next()) {
                 
-                veiculo = new Veiculo(resultSet.getInt("id"), resultSet.getString("modelo"), resultSet.getString("marca"), resultSet.getString("ano"), resultSet.getString("placa"), resultSet.getString("chassi"), resultSet.getBoolean("ativo"), new ClienteDAO().selectById(resultSet.getInt("cliente_id")));
+                veiculo = new Veiculo(resultSet.getInt("id"), resultSet.getString("modelo"), resultSet.getString("marca"), resultSet.getString("ano"), resultSet.getString("placa"), resultSet.getString("chassi"), new ClienteDAO().selectById(resultSet.getInt("cliente_id")));
             }else {
                 
             }

@@ -5,7 +5,7 @@
  */
 package command;
 
-import database.ClassificadoDAO;
+import database.EnderecoDAO;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,16 +16,16 @@ import spark.Response;
 
 /**
  *
- * @author iapereira
+ * @author michel
  */
-public class DeleteCommand extends Command {
+public class EnderecoDeleteCommand extends Command {
 
-    public DeleteCommand(Request request, Response response) {
+    public EnderecoDeleteCommand(Request request, Response response) {
         super(request, response);
         try {
-            new ClassificadoDAO().delete(Integer.parseInt(request.params(":id")));
+            new EnderecoDAO().delete(Integer.parseInt(request.params(":id")));
         } catch (SQLException ex) {
-            Logger.getLogger(ListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnderecoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         response.redirect("/");
     }

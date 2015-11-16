@@ -36,7 +36,6 @@ public class VeiculoInsertCommand extends Command {
         veiculo.setAno(request.queryParams("ano"));
         veiculo.setPlaca(request.queryParams("placa"));
         veiculo.setChassi(request.queryParams("chassi"));
-        veiculo.setAtivo(Boolean.parseBoolean(request.queryParams("ativo")));
         veiculo.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente"))));
         
         new VeiculoDAO().insert(veiculo);

@@ -75,10 +75,10 @@ public class FuncionarioDAO {
     public ArrayList<Funcionario> select() throws SQLException {
         ArrayList<Funcionario> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario WHERE ativo = true;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), resultSet.getBoolean("ativo"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
+            vet.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
         }
         preparedStatement.close();
         
@@ -95,7 +95,7 @@ public class FuncionarioDAO {
             funcionario = new Funcionario();
             if (resultSet.next()) {
                 
-                funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), resultSet.getBoolean("ativo"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
+                funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
             }else {
                 
             }
@@ -105,14 +105,13 @@ public class FuncionarioDAO {
     
     public void update(Funcionario funcionario) throws SQLException {
          
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE funcionario SET nome = ?, telefone = ?, email = ?, endereco_id = ?, cpf = ?, ativo = ? WHERE id = ?;")) {;
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE funcionario SET nome = ?, telefone = ?, email = ?, endereco_id = ?, cpf = ? WHERE id = ?;")) {;
             preparedStatement.setString(1, funcionario.getNome());
             preparedStatement.setString(2, funcionario.getTelefone());
             preparedStatement.setString(3, funcionario.getEmail());
             preparedStatement.setInt(4, funcionario.getEndereco().getId());
             preparedStatement.setString(5, funcionario.getCpf());
-            preparedStatement.setBoolean(6, funcionario.isAtivo());
-            preparedStatement.setInt(7, funcionario.getId() );
+            preparedStatement.setInt(6, funcionario.getId() );
             preparedStatement.executeUpdate();
          
         }

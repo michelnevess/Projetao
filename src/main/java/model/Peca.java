@@ -13,14 +13,12 @@ public class Peca {
     private int id;
     private String nome, fornecedor;
     private double valor;
-    private boolean ativo;
 
-    public Peca(int id, String nome, String fornecedor, double valor, boolean ativo) {
+    public Peca(int id, String nome, String fornecedor, double valor) {
         this.id = id;
         this.nome = nome;
         this.fornecedor = fornecedor;
         this.valor = valor;
-        this.ativo = ativo;
     }
 
     public Peca() {
@@ -58,15 +56,6 @@ public class Peca {
     public void setValor(double valor) {
         this.valor = valor;
     }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
-    }
-    
     
     
 }

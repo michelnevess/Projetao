@@ -13,17 +13,15 @@ public class Veiculo {
     
     private int id;
     private String modelo, marca, ano, placa, chassi;
-    private boolean ativo;
     private Cliente cliente;
 
-    public Veiculo(int id, String modelo, String marca, String ano, String placa, String chassi, boolean ativo, Cliente cliente) {
+    public Veiculo(int id, String modelo, String marca, String ano, String placa, String chassi, Cliente cliente) {
         this.id = id;
         this.modelo = modelo;
         this.marca = marca;
         this.ano = ano;
         this.placa = placa;
         this.chassi = chassi;
-        this.ativo = ativo;
         this.cliente = cliente;
     }
 
@@ -77,14 +75,6 @@ public class Veiculo {
 
     public void setChassi(String chassi) {
         this.chassi = chassi;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public Cliente getCliente() {

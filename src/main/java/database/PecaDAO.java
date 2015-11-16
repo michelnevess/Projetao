@@ -72,10 +72,10 @@ public class PecaDAO {
     public ArrayList<Peca> select() throws SQLException {
         ArrayList<Peca> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM peca;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM peca WHERE ativo = true;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Peca(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("fornecedor"), resultSet.getDouble("valor"), resultSet.getBoolean("ativo")));
+            vet.add(new Peca(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("fornecedor"), resultSet.getDouble("valor")));
         }
         preparedStatement.close();
         
@@ -91,7 +91,7 @@ public class PecaDAO {
             peca = new Peca();
             if (resultSet.next()) {
                 
-                peca = new Peca(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("fornecedor"), resultSet.getDouble("valor"), resultSet.getBoolean("ativo"));
+                peca = new Peca(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("fornecedor"), resultSet.getDouble("valor"));
             }else {
                 
             }

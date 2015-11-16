@@ -12,16 +12,14 @@ package model;
 public class Funcionario {
     private int id;
     private String nome, telefone, email, cpf;
-    private boolean ativo;
     private Endereco endereco;
 
-    public Funcionario(int id, String nome, String telefone, String email, String cpf, boolean ativo, Endereco endereco) {
+    public Funcionario(int id, String nome, String telefone, String email, String cpf, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.cpf = cpf;
-        this.ativo = ativo;
         this.endereco = endereco;
     }
 
@@ -67,14 +65,6 @@ public class Funcionario {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(boolean ativo) {
-        this.ativo = ativo;
     }
 
     public Endereco getEndereco() {

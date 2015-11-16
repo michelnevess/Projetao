@@ -76,7 +76,7 @@ public class ClienteDAO {
     public ArrayList<Cliente> select() throws SQLException {
         ArrayList<Cliente> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM cliente;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM cliente WHERE ativo = true;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             vet.add(new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("cnpj"), resultSet.getString("telefone"), resultSet.getBoolean("ativo"), resultSet.getBoolean("fisico"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));

@@ -35,7 +35,6 @@ public class FuncionarioInsertCommand extends Command {
         funcionario.setTelefone(request.queryParams("telefone"));
         funcionario.setEmail(request.queryParams("email"));
         funcionario.setCpf(request.queryParams("cpf"));
-        funcionario.setAtivo(Boolean.parseBoolean(request.queryParams("ativo")));
         funcionario.setEndereco(new EnderecoDAO().selectById(Integer.parseInt(request.queryParams("endereco"))));
         
         new FuncionarioDAO().insert(funcionario);

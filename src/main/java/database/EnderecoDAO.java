@@ -75,7 +75,7 @@ public class EnderecoDAO {
     public ArrayList<Endereco> select() throws SQLException {
         ArrayList<Endereco> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM endereco;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM endereco WHERE ativo = true;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             vet.add(new Endereco(resultSet.getInt("id"), resultSet.getString("estado"), resultSet.getString("cidade"), resultSet.getString("bairro"), resultSet.getString("rua"), resultSet.getString("numero"), resultSet.getString("complemento")));
