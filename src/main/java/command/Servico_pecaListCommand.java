@@ -23,7 +23,7 @@ public class Servico_pecaListCommand extends Command {
         //map.put("name", "Seja bem vindo!!!");
         ArrayList<Servico_peca> servico_pecas;
         try {
-            servico_pecas = new Servico_pecaDAO().select();
+            servico_pecas = new Servico_pecaDAO().select(Integer.parseInt(request.params(":id")));
             if (servico_pecas.size()> 0) { 
                 map.put("servico_pecas", servico_pecas);
             }

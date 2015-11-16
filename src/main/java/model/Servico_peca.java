@@ -14,19 +14,38 @@ public class Servico_peca {
     private int id, quantidade;
     private int servico;
     private Peca peca;
-    private double valor, total;
+    private double valor, parcial, total;
+    private String peca_nome;
 
-    public Servico_peca(int id, int quantidade, int servico, Peca peca, double valor) {
+    public Servico_peca(int id, int quantidade, int servico, Peca peca, double valor, double total, String peca_nome) {
         this.id = id;
         this.quantidade = quantidade;
         this.servico = servico;
         this.peca = peca;
         this.valor = valor;
-        this.total = valor * quantidade;
+        this.parcial = valor * quantidade;
+        this.total = total;
+        this.peca_nome = peca_nome;
     }
 
     public Servico_peca() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getPeca_nome() {
+        return peca_nome;
+    }
+
+    public void setPeca_nome(String peca_nome) {
+        this.peca_nome = peca_nome;
     }
 
     public int getId() {
@@ -43,7 +62,7 @@ public class Servico_peca {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-        this.total = this.valor * quantidade;
+        this.parcial = this.valor * quantidade;
     }
 
     public int getServico() {
@@ -68,11 +87,11 @@ public class Servico_peca {
 
     public void setValor(double valor) {
         this.valor = valor;
-        this.total = valor * this.quantidade;
+        this.parcial = valor * this.quantidade;
     }
 
-    public double getTotal() {
-        return total;
+    public double getParcial() {
+        return parcial;
     }
     
         

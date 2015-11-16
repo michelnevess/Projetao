@@ -11,6 +11,7 @@ import database.FuncionarioDAO;
 import database.PecaDAO;
 import database.ServicoDAO;
 import database.Servico_pecaDAO;
+import database.VeiculoDAO;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -41,8 +42,9 @@ public class ServicoInsertCommand extends Command {
         servico.setD_inicio(Date.valueOf(request.queryParams("ano1")+":"+request.queryParams("mes1")+":"+request.queryParams("dia1")));
         servico.setD_fim(Date.valueOf(request.queryParams("ano2")+":"+request.queryParams("mes2")+":"+request.queryParams("dia2")));
         servico.setValor(Double.parseDouble(request.queryParams("valor")));
-        servico.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente"))));
-        servico.setFuncionario(new FuncionarioDAO().selectById(Integer.parseInt(request.queryParams("funcionario"))));
+        servico.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente_id"))));
+        servico.setFuncionario(new FuncionarioDAO().selectById(Integer.parseInt(request.queryParams("funcionario_id"))));
+        servico.setVeiculo(new VeiculoDAO().selectById(Integer.parseInt(request.queryParams("veiculo_id"))));
         
         new ServicoDAO().insert(servico);
         

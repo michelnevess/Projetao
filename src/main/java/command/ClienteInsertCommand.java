@@ -17,6 +17,7 @@ import spark.Request;
 import spark.Response;
 import database.EnderecoDAO;
 import java.sql.SQLException;
+import model.Endereco;
 
 /**
  *
@@ -30,6 +31,17 @@ public class ClienteInsertCommand extends Command {
         super(request, response);     
         
         
+        Endereco endereco = new Endereco();
+        
+        endereco.setEstado(request.queryParams("estado"));
+        endereco.setCidade(request.queryParams("cidade"));
+        endereco.setBairro(request.queryParams("bairro"));
+        endereco.setRua(request.queryParams("rua"));
+        endereco.setNumero(request.queryParams("numero"));
+        endereco.setComplemento(request.queryParams("complemento"));
+        new EnderecoDAO().insert(endereco);
+        
+        
         Cliente cliente = new Cliente();
         cliente.setNome(request.queryParams("nome"));
         cliente.setTelefone(request.queryParams("telefone"));
@@ -37,8 +49,7 @@ public class ClienteInsertCommand extends Command {
         cliente.setCpf(request.queryParams("cpf"));
         cliente.setCnpj(request.queryParams("cnpj"));
         cliente.setFisico(Boolean.parseBoolean(request.queryParams("fisico")));
-        cliente.setAtivo(Boolean.parseBoolean(request.queryParams("ativo")));
-        cliente.setEndereco(new EnderecoDAO().selectById(Integer.parseInt(request.queryParams("endereco"))));
+        cliente.setEndereco( new EnderecoDAO().ultimo());
         
         new ClienteDAO().insert(cliente);
         

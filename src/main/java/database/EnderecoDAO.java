@@ -121,6 +121,22 @@ public class EnderecoDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    public Endereco ultimo() throws SQLException {
+        Endereco ultimo = new Endereco();
+        Connection conexao = new Conexao().getConexao();
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM endereco ORDER BY id DESC LIMIT 1;");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            ultimo = new Endereco(resultSet.getInt("id"), resultSet.getString("estado"), resultSet.getString("cidade"), resultSet.getString("bairro"), resultSet.getString("rua"), resultSet.getString("numero"), resultSet.getString("complemento"));
+        }
+        preparedStatement.close();
+        
+        conexao.close();
+        return ultimo;
+    }
+
+    
 }
 
 

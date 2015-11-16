@@ -25,7 +25,7 @@ public class VeiculoEditCommand extends Command {
         veiculo.setMarca(request.queryParams("marca")); 
         veiculo.setPlaca(request.queryParams("placa")); 
         veiculo.setChassi(request.queryParams("chassi")); 
-        veiculo.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente"))));
+        veiculo.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente_is"))));
         
         veiculo.setId(Integer.parseInt(request.queryParams("id")));
         new VeiculoDAO().update(veiculo);

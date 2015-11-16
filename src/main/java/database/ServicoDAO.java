@@ -30,14 +30,15 @@ public class ServicoDAO {
 
         try {
             conexao = new Conexao().getConexao();
-            preparedStatement = conexao.prepareStatement("INSERT INTO servico (descricao, valor, d_inicio, d_fim, pago, funcionario_id, cliente_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
+            preparedStatement = conexao.prepareStatement("INSERT INTO servico (descricao, valor, d_inicio, d_fim, pago, funcionario_id, cliente_id, veiculo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
             preparedStatement.setString(1, servico.getDescricao());
             preparedStatement.setDouble(2, servico.getValor());
             preparedStatement.setDate(3, servico.getD_inicio());
             preparedStatement.setDate(4, servico.getD_fim());
-            preparedStatement.setBoolean(4, servico.isPago());
-            preparedStatement.setInt(4, servico.getFuncionario().getId());
-            preparedStatement.setInt(4, servico.getCliente().getId());
+            preparedStatement.setBoolean(5, servico.isPago());
+            preparedStatement.setInt(6, servico.getFuncionario().getId());
+            preparedStatement.setInt(7, servico.getCliente().getId());
+            preparedStatement.setInt(8, servico.getVeiculo().getId());
             
         } catch (SQLException sqle) {
             throw new RuntimeException(sqle);
@@ -69,7 +70,7 @@ public class ServicoDAO {
         PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id"))));
+            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id"))));
         }
         preparedStatement.close();
         
@@ -85,7 +86,7 @@ public class ServicoDAO {
             servico = new Servico();
             if (resultSet.next()) {
                 
-                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")));
+                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id")));
             }else {
                 
             }
@@ -99,7 +100,7 @@ public class ServicoDAO {
         PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico ORDER BY id DESC LIMIT 1;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            ultimo = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")));
+            ultimo = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id")));
         }
         preparedStatement.close();
         
@@ -109,14 +110,15 @@ public class ServicoDAO {
     
     public void update(Servico servico) throws SQLException {
          
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico SET descricao = ?, valor = ?, d_inicio = ?, d_fim = ?, funcionario_id = ?, cliente_id = ? WHERE id = ?;")) {;
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico SET descricao = ?, valor = ?, d_inicio = ?, d_fim = ?, funcionario_id = ?, cliente_id = ?, veiculo_id = ? WHERE id = ?;")) {;
             preparedStatement.setString(1, servico.getDescricao());
             preparedStatement.setDouble(2, servico.getValor());
             preparedStatement.setDate(3, servico.getD_inicio());
             preparedStatement.setDate(4, servico.getD_fim());
             preparedStatement.setInt(6, servico.getFuncionario().getId());
-            preparedStatement.setInt(6, servico.getCliente().getId());
-            preparedStatement.setInt(7, servico.getId() );
+            preparedStatement.setInt(7, servico.getCliente().getId());
+            preparedStatement.setInt(8, servico.getVeiculo().getId());
+            preparedStatement.setInt(9, servico.getId() );
             preparedStatement.executeUpdate();
          
         }

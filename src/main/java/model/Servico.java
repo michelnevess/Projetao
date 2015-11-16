@@ -20,8 +20,9 @@ public class Servico {
     private boolean pago = false;
     private Funcionario funcionario;
     private Cliente cliente;
+    private Veiculo veiculo;
 
-    public Servico(int id, String descricao, double valor, Date d_inicio, Date d_fim, boolean pago, Funcionario funcionario, Cliente cliente) {
+    public Servico(int id, String descricao, double valor, Date d_inicio, Date d_fim, boolean pago, Funcionario funcionario, Cliente cliente, Veiculo veiculo) {
         this.id = id;
         this.descricao = descricao;
         this.valor = valor;
@@ -30,6 +31,15 @@ public class Servico {
         this.pago = pago;
         this.funcionario = funcionario;
         this.cliente = cliente;
+        this.veiculo = veiculo;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
     }
 
     public Servico() {

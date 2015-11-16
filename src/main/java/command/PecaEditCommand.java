@@ -21,7 +21,7 @@ public class PecaEditCommand extends Command {
         super(request, response);
         Peca peca = new Peca();       
         peca.setNome(request.queryParams("nome"));
-        peca.setFornecedor(request.queryParams("fornecedor")); 
+        peca.setFornecedor(request.queryParams("fornecedor"));
         peca.setValor(Double.parseDouble(request.queryParams("valor")));
         peca.setId(Integer.parseInt(request.queryParams("id")));
         new PecaDAO().update(peca);
