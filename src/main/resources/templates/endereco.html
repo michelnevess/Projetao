@@ -3,7 +3,7 @@
 <title>Oficina G</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/projetao.css" type="text/css" rel="stylesheet">
+<link href="projetao.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,12 +24,40 @@
 </div>
 </center>
 </div>
-
-
-<div id='div2' name='div2'>
-
+<center>
+<div>
+<br>
+<td><a href="enderecocadastro" class="linkn">Cadastrar Endere&ccedil;o</a></td>
 </div>
 
+<div id='div2' name='div2'>
+<h2>Endere&ccedil;o</h2>
+<table>
+
+    <tr>
+<th>Estado</th>
+<th>Cidade</th>
+<th>Bairro</th>
+<th>Rua</th>
+<th>N&uacute;mero</th>
+<th>Complemento</th>
+<th colspan='2'>A&ccedil;&atilde;o</th>
+</tr>
+{{#enderecos}} 
+<tr>
+   
+<td>{{estado}}</td>
+<td>{{cidade}}</td>
+<td>{{bairro}}</td>
+<td>{{rua}}</td>
+<td>{{numero}}</td>
+<td>{{complemento}}</td>
+<td><a href="/enderecoedit/{{id}}" class="views">Editar</a></td>
+</tr>
+{{/enderecos}}
+</table>
+</div>
+</center>
 <div id='div3' name='div3'>
 <center>
 <h3>Oficina G</h3>

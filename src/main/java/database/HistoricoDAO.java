@@ -24,7 +24,7 @@ public class HistoricoDAO {
     public ArrayList<Historico> select() throws SQLException {
         ArrayList<Historico> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM historico;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM log;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             vet.add(new Historico(resultSet.getInt("id"), resultSet.getInt("pk"), resultSet.getString("nome_campo"), resultSet.getString("nome_tabela"), resultSet.getString("valor_antigo"), resultSet.getString("valor_novo"), resultSet.getDate("data_modificacao"), resultSet.getString("operacao")));
@@ -35,19 +35,4 @@ public class HistoricoDAO {
         return vet;
     }
 
-    public Historico selectById(int id) throws SQLException {
-        Historico historico;
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM historico WHERE id = ?;")) {
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            historico = new Historico();
-            if (resultSet.next()) {
-                
-                historico = new Historico(resultSet.getInt("id"), resultSet.getInt("pk"), resultSet.getString("nome_campo"), resultSet.getString("nome_tabela"), resultSet.getString("valor_antigo"), resultSet.getString("valor_novo"), resultSet.getDate("data_modificacao"), resultSet.getString("operacao"));
-            }else {
-                
-            }
-        }
-        return historico;
-    }
 }

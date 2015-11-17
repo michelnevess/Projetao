@@ -1,0 +1,93 @@
+#div1{
+background-image: url('painel.jpg');
+height: 170px;
+width: auto;
+margin: auto;
+color: white;
+vertical-align: 70%;
+margin-top: 0px;
+padding-top: 0px;
+top: 0;
+text-align: center;
+}
+
+#oficina {
+margin-top: 0px;
+font-size: 70px;
+font-family: arial;
+}
+#links{
+font-size: 20px;
+color: white;
+font-family: arial;
+text-decoration:none;
+}
+
+#of{
+width: 1571px;
+}
+
+#div3{
+font-family: arial;
+}
+
+.linkn{
+color: black;
+text-decoration: none;
+background-color: #B0B0B0;
+font-weight: bold;
+}
+
+.rotas{
+background-color: black;
+border-radius: 15px; 
+width: 800px;
+height: 44px;
+}
+
+.views{
+color: black;
+text-decoration: none;
+font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background: #B0B0B0;
+}
+
+th{
+border-width: 0px 0px 2px;
+border-style: none none solid;
+}
+
+td{
+border-bottom: 1px solid grey;
+}
+
+.normal{
+border-bottom: none;
+background-color: #F0F0F0;
+}
+
+#topo{
+border-bottom:1px solid black;
+width: 600px;
+}
+
+.form{
+border: 1px solid black;
+width: 600px;
+border-radius: 25px;
+}
+
+#inferior{
+height: 450px;
+}
+
+#criar{
+display: block;
+background-color: #00FF00;
+width: 100px;
+border-radius: 25px;
+border: 1px solid black;
+}

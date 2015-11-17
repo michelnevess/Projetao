@@ -7,6 +7,7 @@ package command;
 
 import database.PecaDAO;
 import database.EnderecoDAO;
+import database.FuncionarioDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +29,7 @@ import spark.Response;
          try {
             peca = new PecaDAO().selectById(Integer.parseInt(request.params(":id")));
             map.put("nome", peca.getNome());
-            map.put("fornecedor", peca.getFornecedor());
+            map.put("fornecedor", new FuncionarioDAO().select());
             map.put("valor", peca.getValor());
             map.put("id", peca.getId());
 

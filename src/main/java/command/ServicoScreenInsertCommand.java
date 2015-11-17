@@ -23,29 +23,11 @@ public class ServicoScreenInsertCommand extends Command {
     
     public ServicoScreenInsertCommand(Request request, Response response) throws SQLException {
         super(request, response);
-         ArrayList<Funcionario> funcionario;
-         funcionario = new FuncionarioDAO().select();
          
-        for (Funcionario funcionario1 : funcionario) {
-            map.put("funcionario", funcionario1.getNome());
-            map.put("funcionario_id", funcionario1.getId());
-        }
+            map.put("cliente", new ClienteDAO().select());
+            map.put("funcionario", new FuncionarioDAO().select());
+            map.put("veiculo", new VeiculoDAO().select());
         
-        ArrayList<Cliente> cliente;
-         cliente = new ClienteDAO().select();
-         
-        for (Cliente cliente1 : cliente) {
-            map.put("cliente", cliente1.getNome());
-            map.put("cliente_id", cliente1.getId());
-        }
-        
-        ArrayList<Veiculo> veiculo;
-         veiculo = new VeiculoDAO().select();
-         
-        for (Veiculo veiculo1 : veiculo) {
-            map.put("veiculo", veiculo1.toString());
-            map.put("veiculo_id", veiculo1.getId());
-        }
         
     }
     

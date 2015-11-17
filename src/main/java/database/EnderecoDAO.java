@@ -24,15 +24,6 @@ public class EnderecoDAO {
         
     }
     
-    public void delete(int id) throws SQLException {
-        Connection conexao = new Conexao().getConexao();
-        try (PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE endereco SET ativo = ? WHERE id = ?;")) {;
-            preparedStatement.setBoolean(1, false);
-            preparedStatement.setInt(2, id);
-            preparedStatement.executeUpdate();
-        }
-        conexao.close();
-    }
 
     public void insert(Endereco endereco) {
         Connection conexao = null;
@@ -75,7 +66,7 @@ public class EnderecoDAO {
     public ArrayList<Endereco> select() throws SQLException {
         ArrayList<Endereco> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM endereco WHERE ativo = true;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM endereco");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             vet.add(new Endereco(resultSet.getInt("id"), resultSet.getString("estado"), resultSet.getString("cidade"), resultSet.getString("bairro"), resultSet.getString("rua"), resultSet.getString("numero"), resultSet.getString("complemento")));

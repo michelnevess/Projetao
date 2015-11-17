@@ -3,7 +3,7 @@
 <title>Oficina G</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/projetao.css" type="text/css" rel="stylesheet">
+<link href="projetao.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,12 +24,32 @@
 </div>
 </center>
 </div>
-
+<center>
 
 <div id='div2' name='div2'>
-
+<h2>Hist&oacute;rico</h2>
+<table>
+<tr>
+<th>Tabela</th>
+<th>Valores Antigos</th>
+<th>Valores Novos</th>
+<th>Data de Modifica&ccedil;&atilde;o</th>
+<th>Opera&ccedil;&atilde;o</th>
+<th>Identificador</th>
+</tr>
+{{#historicos}}
+<tr>
+<td>{{nome_tabela}}</td>
+<td>{{valor_antigo}}</td>
+<td>{{valor_novo}}</td>
+<td>{{data_modificacao}}</td>
+<td>{{operacao}}</td>
+<td>{{pk}}</td>
+</tr>
+{{/historicos}}
+</table>
 </div>
-
+</center>
 <div id='div3' name='div3'>
 <center>
 <h3>Oficina G</h3>

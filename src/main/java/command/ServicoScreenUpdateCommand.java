@@ -5,13 +5,18 @@
  */
 package command;
 
+import database.ClienteDAO;
 import database.ServicoDAO;
 import database.EnderecoDAO;
+import database.FuncionarioDAO;
+import database.VeiculoDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Servico;
+import model.Veiculo;
 import spark.Request;
 import spark.Response;
 
@@ -33,6 +38,16 @@ import spark.Response;
             Calendar d_fim = Calendar.getInstance();
             d_fim.setTime(servico.getD_fim());
             
+            ArrayList<Integer> ids = new ArrayList();
+            ArrayList<Veiculo> veiculo = new ArrayList();
+            ArrayList<String> titulo = new ArrayList();
+            
+            for(int i = 0; i < veiculo.size(); i++){
+                ids.add(veiculo.get(i).getId());
+                titulo.add(veiculo.get(i).toString());
+            }
+            
+            
             map.put("descricao", servico.getDescricao());
             map.put("dia1", d_inicio.get(Calendar.DAY_OF_MONTH));
             map.put("dia2", d_fim.get(Calendar.DAY_OF_MONTH));
@@ -41,12 +56,9 @@ import spark.Response;
             map.put("ano1", d_inicio.get(Calendar.YEAR));
             map.put("ano2", d_fim.get(Calendar.YEAR));
             map.put("valor", servico.getValor());
-            map.put("funcionario", servico.getFuncionario().getNome());
-            map.put("funcionario_id", servico.getFuncionario().getId());
-            map.put("cliente", servico.getCliente().getNome());
-            map.put("cliente_id", servico.getCliente().getId());
-            map.put("veiculo", servico.getVeiculo().toString());
-            map.put("veiculo_id", servico.getVeiculo().getId());
+            map.put("funcionario", new FuncionarioDAO().select());
+            map.put("cliente", new ClienteDAO().select());
+            map.put("veiculo", new VeiculoDAO().select());
             map.put("id", servico.getId());
 
         } catch (SQLException ex) {

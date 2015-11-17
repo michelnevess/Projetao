@@ -87,35 +87,28 @@ public class Main {
         
         
         
-        post("/clientedelete/:id", new TemplateViewRoute() {
+        get("/clientedelete/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new ClienteDeleteCommand(request, response), "");
+                return new ModelAndView(new ClienteDeleteCommand(request, response), "cliente.html");
             }
         }, new MustacheTemplateEngine());
         
-        post("/enderecodelete/:id", new TemplateViewRoute() {
+        get("/funcionariodelete/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new EnderecoDeleteCommand(request, response), "");
+                return new ModelAndView(new FuncionarioDeleteCommand(request, response), "message.html");
             }
         }, new MustacheTemplateEngine());
         
-        post("/funcionariodelete/:id", new TemplateViewRoute() {
-            @Override
-            public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new FuncionarioDeleteCommand(request, response), "");
-            }
-        }, new MustacheTemplateEngine());
-        
-        post("/pecadelete/:id", new TemplateViewRoute() {
+        get("/pecadelete/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 return new ModelAndView(new PecaDeleteCommand(request, response), "");
             }
         }, new MustacheTemplateEngine());
         
-        post("/veiculodelete/:id", new TemplateViewRoute() {
+        get("/veiculodelete/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 return new ModelAndView(new VeiculoDeleteCommand(request, response), "");
@@ -142,7 +135,7 @@ public class Main {
             }
         }, new MustacheTemplateEngine());
         
-        get("/enderecocadastro", new TemplateViewRoute() {
+        post("/enderecoinsert", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 return new ModelAndView(new Command(request, response), "enderecocadastro.html");
@@ -248,6 +241,90 @@ public class Main {
                 return null;
             }
         }, new MustacheTemplateEngine());
+        
+        get("/funcionarioupdate/:id", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new FuncionarioScreenUpdateCommand(request, response).getMap(), "funcionarioupdate.html");
+            }
+        }, new MustacheTemplateEngine());
+
+        post("/funcionarioedit/", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                try {
+                    return new ModelAndView(new FuncionarioEditCommand(request, response).getMap(), "message.html");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/pecaupdate/:id", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new PecaScreenUpdateCommand(request, response).getMap(), "pecaupdate.html");
+            }
+        }, new MustacheTemplateEngine());
+
+        post("/pecaedit/", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                try {
+                    return new ModelAndView(new PecaEditCommand(request, response).getMap(), "message.html");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/servicoupdate/:id", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new ServicoScreenUpdateCommand(request, response).getMap(), "servicoupdate.html");
+            }
+        }, new MustacheTemplateEngine());
+
+        post("/servicoedit/", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                try {
+                    return new ModelAndView(new ServicoEditCommand(request, response).getMap(), "message.html");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/veiculoupdate/:id", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new VeiculoScreenUpdateCommand(request, response).getMap(), "veiculoupdate.html");
+            }
+        }, new MustacheTemplateEngine());
+
+        post("/veiculoedit/", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                try {
+                    return new ModelAndView(new VeiculoEditCommand(request, response).getMap(), "message.html");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                return null;
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/pagar/:id", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new PagarServicoCommand(request, response).getMap(), "");
+            }
+        }, new MustacheTemplateEngine());
+        
         
     }
 }

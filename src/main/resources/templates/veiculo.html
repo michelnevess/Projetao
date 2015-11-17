@@ -3,7 +3,7 @@
 <title>Oficina G</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/projetao.css" type="text/css" rel="stylesheet">
+<link href="projetao.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,12 +24,40 @@
 </div>
 </center>
 </div>
-
-
-<div id='div2' name='div2'>
-
+<center>
+<div>
+<br>
+<td><a href="cadastrarveiculo.html" class="linkn">Cadastrar Ve&iacute;culo</a></td>
 </div>
 
+<div id='div2' name='div2'>
+<h2>Ve&iacute;culos</h2>
+<table>
+<tr>
+
+<th>Cliente</th>
+<th>Placa</th>
+<th>Chassi</th>
+<th>Modelo</th>
+<th>Marca</th>
+<th>Ano</th>
+<th colspan='2'>A&ccedil;&atilde;o</th>
+</tr>
+{{#veiculos}}
+<tr>
+<td>{{nome}}</td>
+<td>{{placa}}</td>
+<td>{{chassi}}</td>
+<td>{{modelo}}</td>
+<td>{{marca}}</td>
+<td>{{ano}}</td>
+<td><a href="/veiculoedit" class="views">Editar</a></td>
+<td><a href="/veiculodelete" class="views">Remover</a></td>
+</tr>
+{{/veiculos}}
+</table>
+</div>
+</center>
 <div id='div3' name='div3'>
 <center>
 <h3>Oficina G</h3>

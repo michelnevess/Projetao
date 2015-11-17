@@ -22,13 +22,7 @@ public class VeiculoScreenInsertCommand extends Command {
     
     public VeiculoScreenInsertCommand(Request request, Response response) throws SQLException {
         super(request, response);
-         ArrayList<Cliente> cliente;
-         cliente = new ClienteDAO().select();
-         
-        for (Cliente cliente1 : cliente) {
-            map.put("cliente", cliente1.getNome());
-            map.put("cliente_id", cliente1.getId());
-        }
+            map.put("cliente", new ClienteDAO().select());
     }
     
 }

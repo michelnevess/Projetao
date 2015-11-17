@@ -27,7 +27,7 @@ public class FuncionarioDeleteCommand extends Command {
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.redirect("/");
+        response.redirect("/funcionario");
     }
 
 }

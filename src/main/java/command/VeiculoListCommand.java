@@ -20,12 +20,19 @@ public class VeiculoListCommand extends Command {
 
     public VeiculoListCommand(Request request, Response response) {
         super(request, response);
-        //map.put("name", "Seja bem vindo!!!");
+        
         ArrayList<Veiculo> veiculos;
+        ArrayList<String> nome = new ArrayList();
         try {
             veiculos = new VeiculoDAO().select();
+            
+            for(int i = 0; i < veiculos.size(); i++){
+                nome.add(veiculos.get(i).getCliente().getNome());
+            }
+            
             if (veiculos.size()> 0) { 
                 map.put("veiculos", veiculos);
+                map.put("nome", nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(VeiculoListCommand.class.getName()).log(Level.SEVERE, null, ex);

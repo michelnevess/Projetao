@@ -63,7 +63,9 @@ public class Servico_pecaDAO {
     public ArrayList<Servico_peca> select(int id) throws SQLException {
         ArrayList<Servico_peca> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico_peca.id, servico_peca.quantidade, servico_peca.valor, SUM(servico_peca.quantidade * servico_peca.valor AS total), peca.nome FROM servico_peca INNER JOIN peca ON(servico_peca.peca_id = peca.id) WHERE servico_peca.servico_id = ?;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico_peca.id, servico_peca.quantidade, servico_peca.valor,"
+                + " SUM(servico_peca.quantidade * servico_peca.valor AS total), peca.nome FROM servico_peca INNER JOIN peca "
+                + " ON(servico_peca.peca_id = peca.id)  GROUP BY servico_peca.servico_id WHERE servico_peca.servico_id = ?;");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {

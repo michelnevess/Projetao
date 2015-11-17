@@ -3,7 +3,7 @@
 <title>Oficina G</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="/projetao.css" type="text/css" rel="stylesheet">
+<link href="projetao.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,12 +24,54 @@
 </div>
 </center>
 </div>
-
-
-<div id='div2' name='div2'>
-
+<center>
+<div>
+<br>
+<td><a href="/funcionariocadastro" class="linkn">Cadastrar Funcion&aacute;rio</a></td>
 </div>
 
+<div id='div2' name='div2'>
+<h2>Funcion&aacute;rios</h2>
+<table>
+<tr>
+
+<th>Nome</th>
+<th>Telefone</th>
+<th>Email</th>
+<th>CPF</th>
+<th>Estado</th>
+<th>Cidade</th>
+<th>Bairro</th>
+<th>Rua</th>
+<th>N&uacute;mero</th>
+<th>Complemento</th>
+<th colspan='2'>A&ccedil;&atilde;o</th>
+
+</tr>
+<tr>
+{{#funcionarios}}
+<td>{{nome}}</td>
+<td>{{telefone}}</td>
+<td>{{email}}</td>
+<td>{{cpf}}</td>
+
+{{#enderecos}}
+<td>{{estado}}</td>
+<td>{{cidade}}</td>
+<td>{{bairro}}</td>
+<td>{{rua}}</td>
+<td>{{numero}}</td>
+<td>{{complemento}}</td>
+{{/enderecos}}
+<td><a href="/funcionarioedit/{{id}}" class="views">Editar</a></td>
+<td><a href="/funcionariodelete/{{id}}" class="views">Remover</a></td>
+
+</tr>
+{{/funcionarios}}
+
+</table>
+</div>
+</center>
 <div id='div3' name='div3'>
 <center>
 <h3>Oficina G</h3>
