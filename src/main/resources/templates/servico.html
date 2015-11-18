@@ -24,28 +24,39 @@
 </center>
 </div>
 <center>
+<div>
+<br>
+<td><a href="cadastrarservico.html" class="linkn">Cadastrar Servi&ccedil;o</a></td>
+</div>
 
 <div id='div2' name='div2'>
-<h2>Hist&oacute;rico</h2>
+<h2>Servi&ccedil;o</h2>
 <table>
 <tr>
-<th>Tabela</th>
-<th>Valores Antigos</th>
-<th>Valores Novos</th>
-<th>Data de Modifica&ccedil;&atilde;o</th>
-<th>Opera&ccedil;&atilde;o</th>
-<th>Identificador</th>
+<th>Descri&ccedil;&atilde;o</th>
+<th>Valor</th>
+<th>Funcion&aacute;rio</th>
+<th>Cliente</th>
+<th>Data In&iacute;cio</th>
+<th>Data Fim</th>
+<th colspan='2'>A&ccedil;&atilde;o</th>
 </tr>
-{{#historicos}}
+{{#servicos}}
 <tr>
-<td>{{nome_tabela}}</td>
-<td>{{valor_antigo}}</td>
-<td>{{valor_novo}}</td>
-<td>{{data_modificacao}}</td>
-<td>{{operacao}}</td>
-<td>{{pk}}</td>
+    
+<td><a href="/servico_peca/{{id}}" class="views">Troca de roda e conserto da porta.</a></td>
+<td>{{valor}}</td>
+{{#funcionarios}}
+<td>{{nome}}</td>
+{{/funcionarios}}
+{{#clientes}}
+<td>{{nome}}</td>
+{{/clientes}}
+<td>{{d_inicio}}</td>
+<td>{{d_fim}}</td>
+<td><a href="/servicoedit" class="views">Editar</a></td>
 </tr>
-{{/historicos}}
+{{/servicos}}
 </table>
 </div>
 </center>

@@ -36,12 +36,14 @@ color: black;
 text-decoration: none;
 background-color: #B0B0B0;
 font-weight: bold;
+border-bottom: black;
+border-radius: 10px;
 }
 
 .rotas{
 background-color: black;
 border-radius: 15px; 
-width: 800px;
+width: 700px;
 height: 44px;
 }
 

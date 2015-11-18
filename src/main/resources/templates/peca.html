@@ -24,28 +24,29 @@
 </center>
 </div>
 <center>
+<div>
+<br>
+<td><a href="cadastrarpeca.html" class="linkn">Cadastrar Pe&ccedil;a</a></td>
+</div>
 
 <div id='div2' name='div2'>
-<h2>Hist&oacute;rico</h2>
+<h2>Pe&ccedil;a</h2>
 <table>
 <tr>
-<th>Tabela</th>
-<th>Valores Antigos</th>
-<th>Valores Novos</th>
-<th>Data de Modifica&ccedil;&atilde;o</th>
-<th>Opera&ccedil;&atilde;o</th>
-<th>Identificador</th>
+<th>Nome</th>
+<th>Fabricante</th>
+<th>Valor</th>
+<th colspan='2'>A&ccedil;&atilde;o</th>
 </tr>
-{{#historicos}}
 <tr>
-<td>{{nome_tabela}}</td>
-<td>{{valor_antigo}}</td>
-<td>{{valor_novo}}</td>
-<td>{{data_modificacao}}</td>
-<td>{{operacao}}</td>
-<td>{{pk}}</td>
+{{#pecas}}
+<td>{{nome}}</td>
+<td>{{fornecedor}}</td>
+<td>{{valor}}</td>
+<td><a href="/pecaedit" class="views">Editar</a></td>
+<td><a href="/pecadelete" class="views">Remover</a></td>
 </tr>
-{{/historicos}}
+{{/pecas}}
 </table>
 </div>
 </center>

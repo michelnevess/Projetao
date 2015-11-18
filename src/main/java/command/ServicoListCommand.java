@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
+import model.Funcionario;
 
 import model.Servico;
 import spark.Request;
@@ -20,12 +22,23 @@ public class ServicoListCommand extends Command {
 
     public ServicoListCommand(Request request, Response response) {
         super(request, response);
-        //map.put("name", "Seja bem vindo!!!");
         ArrayList<Servico> servicos;
+        ArrayList<Cliente> clientes = new ArrayList();
+        ArrayList<Funcionario> funcionarios = new ArrayList();
         try {
             servicos = new ServicoDAO().select();
             if (servicos.size()> 0) { 
                 map.put("servicos", servicos);
+            }
+            for (int i =0; i< servicos.size(); i++){
+                clientes.add(servicos.get(i).getCliente());
+                funcionarios.add(servicos.get(i).getFuncionario());
+            }
+            if(clientes.size()>0){
+                map.put("clientes", clientes);
+            }
+            if(funcionarios.size()>0){
+                map.put("funcionarios", funcionarios);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ServicoListCommand.class.getName()).log(Level.SEVERE, null, ex);
