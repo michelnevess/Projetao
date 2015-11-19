@@ -24,7 +24,7 @@ public class Servico_pecaDAO {
     public Servico_pecaDAO(){
         
     }
-    public void insert(Servico_peca servico_peca) {
+    public void insert(Servico_peca servico_peca) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
@@ -35,9 +35,9 @@ public class Servico_pecaDAO {
             preparedStatement.setInt(2, servico_peca.getServico());
             preparedStatement.setInt(3, servico_peca.getPeca().getId());
             preparedStatement.setDouble(4, servico_peca.getValor());
-            
+            preparedStatement.executeQuery();
         } catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -63,13 +63,11 @@ public class Servico_pecaDAO {
     public ArrayList<Servico_peca> select(int id) throws SQLException {
         ArrayList<Servico_peca> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico_peca.id, servico_peca.quantidade, servico_peca.valor,"
-                + " SUM(servico_peca.quantidade * servico_peca.valor AS total), peca.nome FROM servico_peca INNER JOIN peca "
-                + " ON(servico_peca.peca_id = peca.id)  GROUP BY servico_peca.servico_id WHERE servico_peca.servico_id = ?;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico_peca.id, servico_peca.quantidade, servico_peca.peca_id, servico_peca.valor WHERE servico_peca.servico_id = ?;");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Servico_peca(resultSet.getInt("id"), resultSet.getInt("quantidade"), id, new PecaDAO().selectById(resultSet.getInt("peca_id")), resultSet.getDouble("valor"), resultSet.getDouble("total"), resultSet.getString("nome")));
+            vet.add(new Servico_peca(resultSet.getInt("id"), resultSet.getInt("quantidade"), id, new PecaDAO().selectById(resultSet.getInt("peca_id")), resultSet.getDouble("valor")));
         }
         preparedStatement.close();
         
@@ -90,4 +88,12 @@ public class Servico_pecaDAO {
         }
     }
     
+    public double total(int id) throws SQLException{
+        double total;
+        Connection conexao = new Conexao().getConexao();
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico.descricao, SUM(servico_peca.quantidade*servico_peca.valor) AS total FROM servico_peca INNER JOIN servico ON(servico.id = servico_peca.servico_id) WHERE servico_id = ? GROUP BY servico.descricao");
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet.getDouble("total");
+    }
 }

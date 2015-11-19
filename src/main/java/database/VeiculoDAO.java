@@ -47,7 +47,7 @@ public class VeiculoDAO {
             preparedStatement.setString(4, veiculo.getPlaca());
             preparedStatement.setString(5, veiculo.getChassi());
             preparedStatement.setInt(6, veiculo.getCliente().getId());
-            
+            preparedStatement.executeQuery();
         } catch (SQLException sqle) {
             throw new RuntimeException(sqle);
         } finally {

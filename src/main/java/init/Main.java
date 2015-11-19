@@ -21,6 +21,12 @@ public class Main {
 
         staticFileLocation("/html"); 
         
+        
+        get("/fisico", (req, res) -> new AjaxFisico(req, res).getRepostaXML());
+        get("/juridico", (req, res) -> new AjaxJuridico(req, res).getResposta());
+        
+        
+        
         get("/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {

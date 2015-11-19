@@ -24,31 +24,40 @@
 </center>
 </div>
 <center>
+<br>
+<div id='div2' class="form">
+<div id="topo">
+<h2>Cadastro de Pe&ccedil;as</h2>
+</div>
 <div>
 <br>
-<td><a href="/pecacadastro" class="linkn">Cadastrar Pe&ccedil;a</a></td>
-</div>
-
-<div id='div2' name='div2'>
-<h2>Pe&ccedil;a</h2>
+<form name = "form1" class="form1"method="get" action="/pecainsert">
 <table>
 <tr>
-<th>Nome</th>
-<th>Fabricante</th>
-<th>Valor</th>
-<th colspan='2'>A&ccedil;&atilde;o</th>
+<td class="normal">Nome: </td>
+<td class="normal">
+<input type="text" size="35" id="nome" name="nome">
+</td>
 </tr>
 <tr>
-{{#pecas}}
-<td>{{nome}}</td>
-<td>{{fornecedor}}</td>
-<td>{{valor}}</td>
-<td><a href="/pecaedit" class="views">Editar</a></td>
-<td><a href="/pecadelete" class="views">Remover</a></td>
+<td class="normal">Fornecedor: </td>
+<td class="normal">
+    <input type="text" id="fornecedor" name="fornecedor">
+</td>
 </tr>
-{{/pecas}}
+
+<tr>
+<td class="normal">Valor: </td>
+<td class="normal">
+<input type="text" size="15" id="valor" name="valor">
+</td>
+</tr>
 </table>
+<br>
+<input id="criar" type="submit" value="Cadastrar">
 </div>
+</div>
+</form>
 </center>
 <div id='div3' name='div3'>
 <center>

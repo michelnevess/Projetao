@@ -14,38 +14,19 @@ public class Servico_peca {
     private int id, quantidade;
     private int servico;
     private Peca peca;
-    private double valor, parcial, total;
-    private String peca_nome;
+    private double valor, parcial;
 
-    public Servico_peca(int id, int quantidade, int servico, Peca peca, double valor, double total, String peca_nome) {
+    public Servico_peca(int id, int quantidade, int servico, Peca peca, double valor) {
         this.id = id;
         this.quantidade = quantidade;
         this.servico = servico;
         this.peca = peca;
         this.valor = valor;
         this.parcial = valor * quantidade;
-        this.total = total;
-        this.peca_nome = peca_nome;
     }
 
     public Servico_peca() {
         
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public String getPeca_nome() {
-        return peca_nome;
-    }
-
-    public void setPeca_nome(String peca_nome) {
-        this.peca_nome = peca_nome;
     }
 
     public int getId() {

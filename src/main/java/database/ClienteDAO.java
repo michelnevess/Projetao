@@ -34,7 +34,7 @@ public class ClienteDAO {
         conexao.close();
     }
  
-    public void insert(Cliente cliente) {
+    public void insert(Cliente cliente) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
@@ -48,9 +48,9 @@ public class ClienteDAO {
             preparedStatement.setString(5, cliente.getCpf());
             preparedStatement.setString(6, cliente.getCnpj());
             preparedStatement.setBoolean(7, cliente.isFisico());
-            
+            preparedStatement.executeQuery();
         } catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            
         } finally {
             if (preparedStatement != null) {
                 try {

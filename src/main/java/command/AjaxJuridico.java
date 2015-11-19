@@ -7,27 +7,38 @@ package command;
 
 import database.ClienteDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
 import spark.Request;
 import spark.Response;
 
-/**
- *
- * @author michel
- */
-public class ClienteDeleteCommand extends Command {
+public class AjaxJuridico extends Command {
 
-    public ClienteDeleteCommand(Request request, Response response) {
+    private String resposta;
+    private String respostaXML;
+
+    public AjaxJuridico(Request request, Response response) {
         super(request, response);
+
+        ArrayList<Cliente> clientes;
         try {
-            new ClienteDAO().delete(Integer.parseInt(request.params(":id")));
+            clientes = new ClienteDAO().select();
+            for (int i = 0; i < clientes.size(); i++) {
+                if (!clientes.get(i).isFisico()) {
+                    this.resposta += "|" + clientes.get(i).toString();
+                }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.redirect("/cliente");
+
+    }
+
+    public String getResposta() {
+        return this.resposta;
     }
 
 }

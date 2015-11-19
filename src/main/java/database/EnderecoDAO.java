@@ -25,7 +25,7 @@ public class EnderecoDAO {
     }
     
 
-    public void insert(Endereco endereco) {
+    public void insert(Endereco endereco) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
@@ -36,11 +36,11 @@ public class EnderecoDAO {
             preparedStatement.setString(2, endereco.getCidade());
             preparedStatement.setString(3, endereco.getBairro());
             preparedStatement.setString(4, endereco.getRua());
-            preparedStatement.setString(5, endereco.getNumero());
+            preparedStatement.setInt(5, Integer.parseInt(endereco.getNumero()));
             preparedStatement.setString(6, endereco.getComplemento());
-            
+            preparedStatement.executeUpdate();
         } catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -108,9 +108,6 @@ public class EnderecoDAO {
         }
     }
 
-    private Object Endereco() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     
     public Endereco ultimo() throws SQLException {

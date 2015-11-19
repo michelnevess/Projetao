@@ -68,7 +68,7 @@ border-bottom: 1px solid grey;
 
 .normal{
 border-bottom: none;
-background-color: #F0F0F0;
+background-color: white;
 }
 
 #topo{
@@ -80,10 +80,6 @@ width: 600px;
 border: 1px solid black;
 width: 600px;
 border-radius: 25px;
-}
-
-#inferior{
-height: 450px;
 }
 
 #criar{

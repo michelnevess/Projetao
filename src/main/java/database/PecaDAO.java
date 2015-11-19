@@ -34,7 +34,7 @@ public class PecaDAO {
         conexao.close();
     }
 
-    public void insert(Peca peca) {
+    public void insert(Peca peca) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
@@ -44,9 +44,9 @@ public class PecaDAO {
             preparedStatement.setString(1, peca.getNome());
             preparedStatement.setDouble(2, peca.getValor());
             preparedStatement.setString(3, peca.getFornecedor());
-            
+            preparedStatement.executeQuery();
         } catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            
         } finally {
             if (preparedStatement != null) {
                 try {

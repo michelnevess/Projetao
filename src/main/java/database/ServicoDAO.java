@@ -24,7 +24,7 @@ public class ServicoDAO {
         
     }
     
-    public void insert(Servico servico) {
+    public void insert(Servico servico) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
@@ -39,9 +39,9 @@ public class ServicoDAO {
             preparedStatement.setInt(6, servico.getFuncionario().getId());
             preparedStatement.setInt(7, servico.getCliente().getId());
             preparedStatement.setInt(8, servico.getVeiculo().getId());
-            
+            preparedStatement.executeQuery();
         } catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -118,7 +118,7 @@ public class ServicoDAO {
             preparedStatement.setInt(6, servico.getFuncionario().getId());
             preparedStatement.setInt(7, servico.getCliente().getId());
             preparedStatement.setInt(8, servico.getVeiculo().getId());
-            preparedStatement.setInt(9, servico.getId() );
+            preparedStatement.setInt(9, servico.getId());
             preparedStatement.executeUpdate();
          
         }

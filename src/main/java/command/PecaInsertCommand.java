@@ -33,7 +33,7 @@ public class PecaInsertCommand extends Command {
         peca.setFornecedor(request.queryParams("fornecedor"));
         peca.setValor(Double.parseDouble(request.queryParams("valor")));
         
-        new PecaDAO().insert(peca);
+        //new PecaDAO().insert(peca);
         
         map.put("message", "Voce acaba de inserir o peca com sucesso!");
     }    

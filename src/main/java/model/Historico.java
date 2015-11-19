@@ -27,9 +27,7 @@ public class Historico {
         this.operacao = operacao;
     }
 
-    public Historico() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Historico() {}
 
     public int getId() {
         return id;

@@ -1,48 +1,57 @@
 <html>
-<head>
-<title>Oficina G</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="projetao.css" type="text/css" rel="stylesheet">
-</head>
+    <head>
+        <title>Oficina G</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="projetao.css" type="text/css" rel="stylesheet">
+        <script src="projetao.js" type="text/javascript"></script>
+    </head>
 
-<body>
+    <body>
 
-<div id='div1' name='div1'>
-<h1 id='oficina'>Oficina Gambiarra</h1>
-<center>
-<div class="rotas">
-<a id='links' href="/">In&iacute;cio </a>
-<a id='links' href="/veiculo">Ve&iacute;culos </a>
-<a id='links' href="/funcionario">Funcion&aacute;rios </a>
-<a id='links' href="/cliente">Clientes </a>
-<a id='links' href="/peca">Pe&ccedil;as </a>
-<a id='links' href="/servico">Servi&ccedil;os </a>
-<a id='links' href="/endereco">Endere&ccedil;o </a>
-<a id='links' href="/historico">Hist&oacute;rico</a>
-</div>
-</center>
-</div>
+        <div id='div1' name='div1'>
+            <h1 id='oficina'>Oficina Gambiarra</h1>
+            <center>
+                <div class="rotas">
+                    <a id='links' href="/">In&iacute;cio </a>
+                    <a id='links' href="/veiculo">Ve&iacute;culos </a>
+                    <a id='links' href="/funcionario">Funcion&aacute;rios </a>
+                    <a id='links' href="/cliente">Clientes </a>
+                    <a id='links' href="/peca">Pe&ccedil;as </a>
+                    <a id='links' href="/servico">Servi&ccedil;os </a>
+                    <a id='links' href="/endereco">Endere&ccedil;o </a>
+                    <a id='links' href="/historico">Hist&oacute;rico</a>
+                </div>
+            </center>
+        </div>
 
-<center>
-<div id='div2' name='div2'>
-<br>
-<table>
-    <tr>
-<td><a href="cadastrarclientefisico.html" class="linkn"> Cadastrar Cliente F&iacute;sico </a></td>
-<td><a href="cadastrarclientejuridico.html" class="linkn"> Cadastrar Cliente Jur&iacute;dico </a></td>
-<td><a href="clientefisico.html" class="linkn"> Listar Cliente F&iacute;sico </a></td>
-<td><a href="clientejuridico.html" class="linkn"> Listar Cliente Jur&iacute;dico </a></td><br>
-    </tr>
-</table>
-</div>
-</center>
-<div id='div3' name='div3'>
-<center>
-<h3>Oficina G</h3>
-<p>A Oficina da Gambiarra, onde nada se perde, nada se recusa, tudo se resolve.</p>
-</center>
-</div>
+    <center>
+        <div id='div2' name='div2'>
+            <br>
+            <table>
+                <tr>
+                    <td><a href="cadastrarclientefisico.html" class="linkn"> Cadastrar Cliente F&iacute;sico </a></td>
+                    <td><a href="cadastrarclientejuridico.html" class="linkn"> Cadastrar Cliente Jur&iacute;dico </a></td>
+                    <td><a class="linkn" onclick="fisico()"> Listar Cliente F&iacute;sico </a></td>
+                    <td><a href="clientejuridico.html" class="linkn" onclick="juridico()"> Listar Cliente Jur&iacute;dico </a></td><br>
+                </tr>
+            </table>
+            <div>
+                <table id="conteudo">
+                    
+                    
+                </table>
+
+
+            </div>
+        </div>
+    </center>
+    <div id='div3' name='div3'>
+        <center>
+            <h3>Oficina G</h3>
+            <p>A Oficina da Gambiarra, onde nada se perde, nada se recusa, tudo se resolve.</p>
+        </center>
+    </div>
 
 
 </body>

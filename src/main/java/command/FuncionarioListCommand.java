@@ -26,14 +26,15 @@ public class FuncionarioListCommand extends Command {
         ArrayList<Endereco> endereco = new ArrayList();
         try {
             funcionarios = new FuncionarioDAO().select();
-            for (Funcionario funcionario : funcionarios) {
-                endereco.add(funcionario.getEndereco());
+            for (int i =0; i< funcionarios.size(); i++) {
+                endereco.add(funcionarios.get(i).getEndereco());
             }
             if (funcionarios.size()> 0) { 
                 map.put("funcionarios", funcionarios);
                 
             }
             if (endereco.size()>0){
+                System.out.println(endereco);
                 map.put("enderecos", endereco);
             }
         } catch (SQLException ex) {

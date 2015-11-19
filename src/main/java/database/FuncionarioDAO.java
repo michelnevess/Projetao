@@ -35,7 +35,7 @@ public class FuncionarioDAO {
         conexao.close();
     }
  
-    public void insert(Funcionario funcionario) {
+    public void insert(Funcionario funcionario) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
@@ -47,9 +47,9 @@ public class FuncionarioDAO {
             preparedStatement.setString(3, funcionario.getEmail());
             preparedStatement.setInt(4, funcionario.getEndereco().getId());
             preparedStatement.setString(5, funcionario.getCpf());
-            
+            preparedStatement.executeUpdate();
         } catch (SQLException sqle) {
-            throw new RuntimeException(sqle);
+            
         } finally {
             if (preparedStatement != null) {
                 try {

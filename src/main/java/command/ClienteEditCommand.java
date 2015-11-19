@@ -44,7 +44,7 @@ public class ClienteEditCommand extends Command {
         cliente.setEndereco(endereco);
         cliente.setId(Integer.parseInt(request.queryParams("id2")));
         new ClienteDAO().update(cliente);
-            map.put("message", "Voce acaba de editar o Cliente");
+            response.redirect("/cliente");
         
     }
 
