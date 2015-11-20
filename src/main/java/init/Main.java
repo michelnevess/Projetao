@@ -22,7 +22,7 @@ public class Main {
         staticFileLocation("/html"); 
         
         
-        get("/fisico", (req, res) -> new AjaxFisico(req, res).getRepostaXML());
+        get("/fisico/:valor", (req, res) -> new AjaxFisico(req, res).getResposta());
         get("/juridico", (req, res) -> new AjaxJuridico(req, res).getResposta());
         
         
@@ -103,7 +103,7 @@ public class Main {
         get("/funcionariodelete/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new FuncionarioDeleteCommand(request, response), "message.html");
+                return new ModelAndView(new FuncionarioDeleteCommand(request, response), "");
             }
         }, new MustacheTemplateEngine());
         
@@ -133,7 +133,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ClienteInsertCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new ClienteInsertCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -159,7 +159,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new FuncionarioInsertCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new FuncionarioInsertCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -177,7 +177,7 @@ public class Main {
         post("/pecainsert/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new PecaInsertCommand(request, response).getMap(), "message.html");
+                return new ModelAndView(new PecaInsertCommand(request, response).getMap(), "");
             }
         }, new MustacheTemplateEngine());
         
@@ -197,7 +197,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ServicoInsertCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new ServicoInsertCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -221,7 +221,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new VeiculoInsertCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new VeiculoInsertCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -240,7 +240,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ClienteEditCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new ClienteEditCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -259,7 +259,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new FuncionarioEditCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new FuncionarioEditCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -278,7 +278,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new PecaEditCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new PecaEditCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -297,7 +297,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ServicoEditCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new ServicoEditCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -316,7 +316,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new VeiculoEditCommand(request, response).getMap(), "message.html");
+                    return new ModelAndView(new VeiculoEditCommand(request, response).getMap(), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }

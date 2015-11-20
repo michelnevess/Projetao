@@ -82,9 +82,8 @@ public class Veiculo {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-
-    @Override
-    public String toString() {
+    
+    public String getStr() {
         return modelo + ", " + marca + ", " + ano + ", " + placa + ", " + chassi + ", " + cliente.getNome();
     }
     

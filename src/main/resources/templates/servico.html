@@ -1,71 +1,83 @@
 <html>
-<head>
-<title>Oficina G</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="projetao.css" type="text/css" rel="stylesheet">
-</head>
+    <head>
+        <title>Oficina G</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="projetao.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="projetao.js"></script>
+    </head>
 
-<body>
+    <body>
 
-<div id='div1' name='div1'>
-<h1 id='oficina'>Oficina Gambiarra</h1>
-<center>
-<div class="rotas">
-<a id='links' href="/">In&iacute;cio </a>
-<a id='links' href="/veiculo">Ve&iacute;culos </a>
-<a id='links' href="/funcionario">Funcion&aacute;rios </a>
-<a id='links' href="/cliente">Clientes </a>
-<a id='links' href="/peca">Pe&ccedil;as </a>
-<a id='links' href="/servico">Servi&ccedil;os </a>
-<a id='links' href="/endereco">Endere&ccedil;o </a>
-<a id='links' href="/historico">Hist&oacute;rico</a>
-</div>
-</center>
-</div>
-<center>
-<div>
-<br>
-<td><a href="cadastrarservico.html" class="linkn">Cadastrar Servi&ccedil;o</a></td>
-</div>
+        <div id='div1' name='div1'>
+            <h1 id='oficina'>Oficina Gambiarra</h1>
+            <center>
+                <div class="rotas">
+                    <a id='links' href="/">In&iacute;cio </a>
+                    <a id='links' href="/veiculo">Ve&iacute;culos </a>
+                    <a id='links' href="/funcionario">Funcion&aacute;rios </a>
+                    <a id='links' href="/cliente">Clientes </a>
+                    <a id='links' href="/peca">Pe&ccedil;as </a>
+                    <a id='links' href="/servico">Servi&ccedil;os </a>
+                    <a id='links' href="/endereco">Endere&ccedil;o </a>
+                    <a id='links' href="/historico">Hist&oacute;rico</a>
+                </div>
+            </center>
+        </div>
+    <center>
+        <div>
+            <br>
+                        <td class="estilo">Nome do Cliente: </td>
+                        <td class="estilo"><input type="text" id="nome" name="nome" onkeyup="fisico(this.value)"></td>
+                        
+            <br>
+            <td><a href="/servicocadastro" class="linkn">Cadastrar Servi&ccedil;o</a></td>
+        </div>
 
-<div id='div2' name='div2'>
-<h2>Servi&ccedil;o</h2>
-<table>
-<tr>
-<th>Descri&ccedil;&atilde;o</th>
-<th>Valor</th>
-<th>Funcion&aacute;rio</th>
-<th>Cliente</th>
-<th>Data In&iacute;cio</th>
-<th>Data Fim</th>
-<th colspan='2'>A&ccedil;&atilde;o</th>
-</tr>
-{{#servicos}}
-<tr>
-    
-<td><a href="/servico_peca/{{id}}" class="views">Troca de roda e conserto da porta.</a></td>
-<td>{{valor}}</td>
-{{#funcionarios}}
-<td>{{nome}}</td>
-{{/funcionarios}}
-{{#clientes}}
-<td>{{nome}}</td>
-{{/clientes}}
-<td>{{d_inicio}}</td>
-<td>{{d_fim}}</td>
-<td><a href="/servicoedit" class="views">Editar</a></td>
-</tr>
-{{/servicos}}
-</table>
-</div>
-</center>
-<div id='div3' name='div3'>
-<center>
-<h3>Oficina G</h3>
-<p>A Oficina da Gambiarra, onde nada se perde, nada se recusa, tudo se resolve.</p>
-</center>
-</div>
+        <div id='div2' name='div2'>
+            <h2>Servi&ccedil;o</h2>
+            <table>
+                <tr>
+                    <th>Descri&ccedil;&atilde;o</th>
+                    <th>Valor</th>
+                    <th>Funcion&aacute;rio</th>
+                    <th>Cliente</th>
+                    <th>Veiculo</th>
+                    <th>Data In&iacute;cio</th>
+                    <th>Data Fim</th>
+                    <th colspan='2'>A&ccedil;&atilde;o</th>
+                </tr>
+                {{#servicos}}
+                <tr>
+
+                    <td><a href="/servico_peca/{{id}}" class="views">{{descricao}}</a></td>
+                    <td>{{valor}}</td>
+                    {{/servicos}}
+                    {{#funcionarios}}
+                    <td>{{nome}}</td>
+                    {{/funcionarios}}
+                    {{#clientes}}
+                    <td>{{nome}}</td>
+                    {{/clientes}}
+                    {{#veiculos}}
+                    <td>{{chassi}}</td>
+                    {{/veiculos}}
+                    {{#servicos}}
+                    <td>{{d_inicio}}</td>
+                    <td>{{d_fim}}</td>
+                    <td><a href="/servicoedit/{{id}}" class="views">Editar</a></td>
+                    {{/servicos}}
+                </tr>
+                
+            </table>
+        </div>
+    </center>
+    <div id='div3' name='div3'>
+        <center>
+            <h3>Oficina G</h3>
+            <p>A Oficina da Gambiarra, onde nada se perde, nada se recusa, tudo se resolve.</p>
+        </center>
+    </div>
 
 
 </body>
