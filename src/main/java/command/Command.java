@@ -7,7 +7,7 @@ import spark.Response;
 
 /**
  *
- * @author iapereira
+ * @author michel
  */
 public class Command {
     protected Request request;

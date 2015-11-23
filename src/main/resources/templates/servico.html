@@ -25,11 +25,6 @@
         </div>
     <center>
         <div>
-            <br>
-                        <td class="estilo">Nome do Cliente: </td>
-                        <td class="estilo"><input type="text" id="nome" name="nome" onkeyup="fisico(this.value)"></td>
-                        
-                        <br><br>
             <td><a href="/servicocadastro" class="linkn">Cadastrar Servi&ccedil;o</a></td>
         </div>
 
@@ -38,7 +33,7 @@
             <table>
                 <tr>
                     <th>Descri&ccedil;&atilde;o</th>
-                    <th>Valor</th>
+                    <th>Valor da M&atilde;o de Obra: </th>
                     <th>Funcion&aacute;rio</th>
                     <th>Cliente</th>
                     <th>Veiculo</th>
@@ -46,28 +41,27 @@
                     <th>Data Fim</th>
                     <th colspan='2'>A&ccedil;&atilde;o</th>
                 </tr>
-                {{#servicos}}
-                <tr>
 
+                <tr>
+                    {{#servicos}}
                     <td><a href="/servico_peca/{{id}}" class="views">{{descricao}}</a></td>
                     <td>{{valor}}</td>
-                    
-                    
+
+
                     <td>{{funcionario.nome}}</td>
-                    
-                    
+
+
                     <td>{{cliente.nome}}</td>
-                    
-                    
+
+
                     <td>{{veiculo.chassi}}</td>
-                    
-                    
+
+
                     <td>{{d_inicio}}</td>
                     <td>{{d_fim}}</td>
                     <td><a href="/servicoupdate/{{id}}" class="views">Editar</a></td>
                     {{/servicos}}
                 </tr>
-                
             </table>
         </div>
     </center>

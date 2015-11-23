@@ -137,8 +137,8 @@ public class ServicoDAO {
     public ArrayList<Servico> filtro(String nome) throws SQLException {
         ArrayList<Servico> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico INNER JOIN cliente ON(servico.cliente_id = cliente.id) WHERE cliente.nome ILIKE = ? ;");
-        preparedStatement.setString(1, nome);
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico INNER JOIN cliente ON(servico.cliente_id = cliente.id) WHERE cliente.nome ILIKE ? ;");
+        preparedStatement.setString(1, "%" + nome + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id"))));

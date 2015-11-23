@@ -36,11 +36,11 @@ public class VeiculoInsertCommand extends Command {
         veiculo.setAno(request.queryParams("ano"));
         veiculo.setPlaca(request.queryParams("placa"));
         veiculo.setChassi(request.queryParams("chassi"));
-        veiculo.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente_is"))));
+        veiculo.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.params("cliente"))));
         
         new VeiculoDAO().insert(veiculo);
         
-        map.put("message", "Voce acaba de inserir o veiculo com sucesso!");
+        response.redirect("/");
     }    
     
 

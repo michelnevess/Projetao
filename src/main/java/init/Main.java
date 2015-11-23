@@ -22,8 +22,8 @@ public class Main {
         staticFileLocation("/html"); 
         
         
-        get("/fisico/:valor", (req, res) -> new AjaxFisico(req, res).getResposta());
-        get("/juridico", (req, res) -> new AjaxJuridico(req, res).getResposta());
+        get("/filtro1/:valor", (req, res) -> new Filtro1(req, res).getResposta());
+        get("/filtro1/:valor", (req, res) -> new Filtro2(req, res).getResposta());
         
         
         
@@ -231,7 +231,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new VeiculoInsertCommand(request, response).getMap(), "");
+                    return new ModelAndView(new VeiculoInsertCommand(request, response), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
