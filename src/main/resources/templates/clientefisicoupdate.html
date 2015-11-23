@@ -3,7 +3,8 @@
         <title>Oficina G</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="projetao.css" type="text/css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="projetao.css">
+        <script src="projetao.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -26,81 +27,83 @@
         <br>
         <div id='div2' class="form">
             <div id="topo">
-                <h2>Cadastro de Funcion&aacute;rios</h2>
+                <h2>Cadastro de Cliente F&iacute;sico</h2>
             </div>
             <div id="inferior">
                 <br>
-                <form name = "form1" class="form1" action="/funcionarioinsert/" method="post">
+                <form name = "form1" class="form1" action="/clienteedit/" method="post">
                     <table>
                         <tr>
                             <td class="normal">Nome: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="nome" name="nome">
+                                <input type="text" size="35" id="nome" name="nome" value="{{nome}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">Telefone: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="telefone" name="telefone" maxlength="11">
+                                <input type="text" size="35" id="telefone" name="telefone" maxlength="11" value="{{telefone}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">Email: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="email" name="email">
+                                <input type="text" size="35" id="email" name="email" value="{{email}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">CPF: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="cpf" name="cpf" maxlength="11">
+                                <input type="text" size="35" id="cpf" name="cpf" maxlength="11" value="{{cpf}}">
                             </td>
                         </tr>
                         <tr>
                             <td class="normal">Estado: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="estado" name="estado">
+                                <input type="text" size="35" id="estado" name="estado" value="{{estado}}">
                             </td>
                         </tr>
                         <tr>
                             <td class="normal">Cidade: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="cidade" name="cidade">
+                                <input type="text" size="35" id="cidade" name="cidade" value="{{cidade}}">
                             </td>
                         </tr>
                         <tr>
                             <td class="normal">Bairro: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="bairro" name="bairro">
+                                <input type="text" size="35" id="bairro" name="bairro" value="{{bairro}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">Rua: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="rua" name="rua">
+                                <input type="text" size="35" id="rua" name="rua" value="{{rua}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">N&uacute;mero: </td>
                             <td class="normal">
-                                <input type="text" size="10" id="numero" name="numero">
+                                <input type="text" size="10" id="numero" name="numero" value="{{numero}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">Complemento: </td>
                             <td class="normal">
-                                <textarea cols="45" rows="4" id="complemento" name="complemento"></textarea>
+                                <textarea cols="45" rows="4" id="complemento" name="complemento" >{{complemento}}</textarea>
                             </td>
                         </tr>
+                        <input type="hidden" value="{{id}}" name="id" id="id">
+                        <input type="hidden" value="{{id2}}" name="id2" id="id2">
                     </table>
                     <br>
-                    <input id="criar" type="submit" value="Cadastrar">
+                    <input id="criar" type="submit" value="Alterar">
                     </div>
                     </div>
                 </form>

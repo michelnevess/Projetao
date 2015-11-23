@@ -32,7 +32,7 @@ public class AjaxJuridico extends Command {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteFisicoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

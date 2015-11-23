@@ -35,7 +35,36 @@
                     <td><a href="/clientejuridico" class="linkn" onclick="juridico()"> Listar Cliente Jur&iacute;dico </a></td><br>
                 </tr>
             </table>
-            
+
+            <table id="conteudo">
+
+                <tr>
+
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Endere&ccedil;o</th>
+                    <th colspan='2'>A&ccedil;&atilde;o</th>
+                </tr>
+                {{#clientes}}
+                <tr>
+
+                    <td>{{nome}}</td>
+                    <td>{{telefone}}</td>
+                    <td>{{email}}</td>
+                    <td>{{cpf}}</td>
+                    <td>{{endereco.getEstado}}, {{endereco.getCidade}}, {{endereco.getBairro}}, {{endereco.getRua}}, {{endereco.getNumero}}, {{endereco.getComplemento}}</td>
+                    <td><a href="/clientefisicoupdate/{{id}}" class="views">Editar</a></td>
+                    <td><a href="/clientedelete/{{id}}" class="views">Remover</a></td>
+
+                </tr>
+                {{/clientes}}
+
+            </table>
+
+
+
         </div>
     </center>
     <div id='div3' name='div3'>

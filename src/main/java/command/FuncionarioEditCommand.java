@@ -42,7 +42,7 @@ public class FuncionarioEditCommand extends Command {
         
         funcionario.setId(Integer.parseInt(request.queryParams("id")));
         new FuncionarioDAO().update(funcionario);
-            map.put("message", "Voce acaba de editar o Funcionario");
+            
         
     }
 

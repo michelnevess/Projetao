@@ -42,7 +42,7 @@ public class ClienteEditCommand extends Command {
         cliente.setCnpj(request.queryParams("cnpj"));
         cliente.setFisico(Boolean.parseBoolean(request.queryParams("fisico")));
         cliente.setEndereco(endereco);
-        cliente.setId(Integer.parseInt(request.queryParams("id2")));
+        cliente.setId(Integer.parseInt(request.queryParams("id")));
         new ClienteDAO().update(cliente);
             response.redirect("/cliente");
         

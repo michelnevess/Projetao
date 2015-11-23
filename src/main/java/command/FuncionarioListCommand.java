@@ -34,7 +34,6 @@ public class FuncionarioListCommand extends Command {
                 
             }
             if (endereco.size()>0){
-                System.out.println(endereco);
                 map.put("enderecos", endereco);
             }
         } catch (SQLException ex) {

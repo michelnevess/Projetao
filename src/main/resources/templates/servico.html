@@ -19,7 +19,6 @@
                     <a id='links' href="/cliente">Clientes </a>
                     <a id='links' href="/peca">Pe&ccedil;as </a>
                     <a id='links' href="/servico">Servi&ccedil;os </a>
-                    <a id='links' href="/endereco">Endere&ccedil;o </a>
                     <a id='links' href="/historico">Hist&oacute;rico</a>
                 </div>
             </center>
@@ -30,7 +29,7 @@
                         <td class="estilo">Nome do Cliente: </td>
                         <td class="estilo"><input type="text" id="nome" name="nome" onkeyup="fisico(this.value)"></td>
                         
-            <br>
+                        <br><br>
             <td><a href="/servicocadastro" class="linkn">Cadastrar Servi&ccedil;o</a></td>
         </div>
 
@@ -52,20 +51,20 @@
 
                     <td><a href="/servico_peca/{{id}}" class="views">{{descricao}}</a></td>
                     <td>{{valor}}</td>
-                    {{/servicos}}
-                    {{#funcionarios}}
-                    <td>{{nome}}</td>
-                    {{/funcionarios}}
-                    {{#clientes}}
-                    <td>{{nome}}</td>
-                    {{/clientes}}
-                    {{#veiculos}}
-                    <td>{{chassi}}</td>
-                    {{/veiculos}}
-                    {{#servicos}}
+                    
+                    
+                    <td>{{funcionario.nome}}</td>
+                    
+                    
+                    <td>{{cliente.nome}}</td>
+                    
+                    
+                    <td>{{veiculo.chassi}}</td>
+                    
+                    
                     <td>{{d_inicio}}</td>
                     <td>{{d_fim}}</td>
-                    <td><a href="/servicoedit/{{id}}" class="views">Editar</a></td>
+                    <td><a href="/servicoupdate/{{id}}" class="views">Editar</a></td>
                     {{/servicos}}
                 </tr>
                 

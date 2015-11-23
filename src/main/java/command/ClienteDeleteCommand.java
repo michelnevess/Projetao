@@ -25,7 +25,7 @@ public class ClienteDeleteCommand extends Command {
         try {
             new ClienteDAO().delete(Integer.parseInt(request.params(":id")));
         } catch (SQLException ex) {
-            Logger.getLogger(ClienteListCommand.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteFisicoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
         response.redirect("/cliente");
     }

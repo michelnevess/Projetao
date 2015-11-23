@@ -24,10 +24,10 @@ public class ServicoScreenInsertCommand extends Command {
     public ServicoScreenInsertCommand(Request request, Response response) throws SQLException {
         super(request, response);
          
-            map.put("cliente", new ClienteDAO().select());
-            map.put("funcionario", new FuncionarioDAO().select());
-            map.put("veiculo", new VeiculoDAO().select());
-        
+            map.put("clientes", new ClienteDAO().select());
+            map.put("funcionarios", new FuncionarioDAO().select());
+            map.put("veiculos", new VeiculoDAO().select());
+            map.put("pecas", new PecaDAO().select());
         
     }
     

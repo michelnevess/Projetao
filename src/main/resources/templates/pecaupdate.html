@@ -26,63 +26,35 @@
         <br>
         <div id='div2' class="form">
             <div id="topo">
-                <h2>Cadastro de Ve&iacute;culos</h2>
+                <h2>Alterar Pe&ccedil;as</h2>
             </div>
-            <div id="inferior">
+            <div>
                 <br>
-                <form name = "form1" class="form1"method="get" action="/veiculoinsert">
+                <form name = "form1" class="form1"method="get" action="/pecaedit">
                     <table>
                         <tr>
-                            <td class="normal">Cliente: </td>
+                            <td class="normal">Nome: </td>
                             <td class="normal">
-                                
-                                <select name="cliente" id="cliente" size="1">
-                                    {{#clientes}}
-                                        <option value="{{id}}">{{nome}}</option>
-                                    {{/clientes}}
-                                </select>
-                                
-
+                                <input type="text" size="35" id="nome" name="nome" value="{{nome}}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="normal">Fornecedor: </td>
+                            <td class="normal">
+                                <input type="text" id="fornecedor" name="fornecedor" value="{{fornecedor}}">
                             </td>
                         </tr>
 
                         <tr>
-                            <td class="normal">Placa: </td>
+                            <td class="normal">Valor: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="placa" name="placa" maxlength="6">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="normal">Chassi: </td>
-                            <td class="normal">
-                                <input type="text" size="35" id="chassi" name="chassi" maxlength="17">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="normal">Marca: </td>
-                            <td class="normal">
-                                <input type="text" size="35" id="marca" name="marca">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="normal">Modelo: </td>
-                            <td class="normal">
-                                <input type="text" size="35" id="modelo" name="modelo">
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="normal">Ano: </td>
-                            <td class="normal">
-                                <input type="text" size="35" id="ano" name="ano" maxlength="4">
+                                <input type="text" size="15" id="valor" name="valor" value="{{valor}}">
                             </td>
                         </tr>
                     </table>
                     <br>
-                    <input id="criar" type="submit" value="Cadastrar">
+                    <input type="hidden" value="{{id}}">
+                    <input id="criar" type="submit" value="Alterar">
                     </div>
                     </div>
                 </form>

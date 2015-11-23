@@ -32,9 +32,12 @@ import spark.Response;
             map.put("nome", cliente.getNome());
             map.put("telefone", cliente.getTelefone());
             map.put("email", cliente.getEmail());
-            map.put("cpf", cliente.getCpf());
-            map.put("cnpj", cliente.getCnpj());
             
+            if(cliente.isFisico()){
+            map.put("cpf", cliente.getCpf());
+            }else{
+            map.put("cnpj", cliente.getCnpj());
+            }
             
             map.put("estado", cliente.getEndereco().getEstado());
             map.put("cidade", cliente.getEndereco().getCidade());

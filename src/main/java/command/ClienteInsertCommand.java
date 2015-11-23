@@ -46,8 +46,11 @@ public class ClienteInsertCommand extends Command {
         cliente.setNome(request.queryParams("nome"));
         cliente.setTelefone(request.queryParams("telefone"));
         cliente.setEmail(request.queryParams("email"));
-        cliente.setCpf(request.queryParams("cpf"));
-        cliente.setCnpj(request.queryParams("cnpj"));
+        if(request.queryParams(":tipo").equals("f")){
+            cliente.setCpf(request.queryParams("cpf"));
+        }else
+            cliente.setCnpj(request.queryParams("cnpj"));
+        
         cliente.setFisico(Boolean.parseBoolean(request.queryParams("fisico")));
         cliente.setEndereco( new EnderecoDAO().ultimo());
         

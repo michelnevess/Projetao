@@ -19,10 +19,21 @@ import spark.Response;
  * @author michel
  */
 public class VeiculoScreenInsertCommand extends Command {
-    
-    public VeiculoScreenInsertCommand(Request request, Response response) throws SQLException {
+
+    public VeiculoScreenInsertCommand(Request request, Response response) {
         super(request, response);
-            map.put("cliente", new ClienteDAO().select());
+        ArrayList<Cliente> clientes = null;
+
+        try {
+            clientes = new ClienteDAO().select();
+            if (clientes.size() > 0) {
+                map.put("clientes", clientes);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VeiculoScreenInsertCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
     }
-    
+
 }

@@ -45,14 +45,21 @@ public class Main {
         get("/cliente", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new ClienteListCommand(request, response).getMap(), "cliente.html");
+                return new ModelAndView(null, "cliente.html");
             }
         }, new MustacheTemplateEngine());
 
-        get("/endereco", new TemplateViewRoute() {
+        get("/clientefisico", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new EnderecoListCommand(request, response).getMap(), "endereco.html");
+                return new ModelAndView(new ClienteFisicoListCommand(request, response).getMap(), "clientefisico.html");
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/clientejuridico", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new ClienteJuridicoListCommand(request, response).getMap(), "clientejuridico.html");
             }
         }, new MustacheTemplateEngine());
         
@@ -122,14 +129,21 @@ public class Main {
         }, new MustacheTemplateEngine());
 
                   
-        get("/clientecadastro", new TemplateViewRoute() {
+        get("/clientefisicocadastro", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new Command(request, response), "clientecadastro.html");
+                return new ModelAndView(new Command(request, response), "clientefisicocadastro.html");
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/clientejuridicocadastro", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new Command(request, response), "clientejuridicocadastro.html");
             }
         }, new MustacheTemplateEngine());
 
-        post("/clienteinsert/", new TemplateViewRoute() {
+        post("/clienteinsert/:tipo", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
@@ -185,7 +199,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ServicoScreenInsertCommand(request, response), "servicocadastro.html");
+                    return new ModelAndView(new ServicoScreenInsertCommand(request, response).getMap(), "servicocadastro.html");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -208,12 +222,8 @@ public class Main {
         get("/veiculocadastro", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                try {
-                    return new ModelAndView(new VeiculoScreenInsertCommand(request, response), "veiculocadastro.html");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                return null;
+                return new ModelAndView(new VeiculoScreenInsertCommand(request, response).getMap(), "veiculocadastro.html");
+                
             }
         }, new MustacheTemplateEngine());
 
@@ -229,10 +239,17 @@ public class Main {
             }
         }, new MustacheTemplateEngine());
         
-        get("/clienteupdate/:id", new TemplateViewRoute() {
+        get("/clientefisicoupdate/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new ClienteScreenUpdateCommand(request, response).getMap(), "clienteupdate.html");
+                return new ModelAndView(new ClienteScreenUpdateCommand(request, response).getMap(), "clientefisicoupdate.html");
+            }
+        }, new MustacheTemplateEngine());
+        
+        get("/clientejuridicoupdate/:id", new TemplateViewRoute() {
+            @Override
+            public ModelAndView handle(Request request, Response response) {
+                return new ModelAndView(new ClienteScreenUpdateCommand(request, response).getMap(), "clientejuridicoupdate.html");
             }
         }, new MustacheTemplateEngine());
 

@@ -5,17 +5,15 @@
  */
 package command;
 
-import database.ClienteDAO;
-import database.ServicoDAO;
-import database.EnderecoDAO;
-import database.FuncionarioDAO;
-import database.VeiculoDAO;
+import database.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Peca;
 import model.Servico;
+import model.Servico_peca;
 import model.Veiculo;
 import spark.Request;
 import spark.Response;
@@ -41,12 +39,12 @@ import spark.Response;
             ArrayList<Integer> ids = new ArrayList();
             ArrayList<Veiculo> veiculo = new ArrayList();
             ArrayList<String> titulo = new ArrayList();
-            
-            for(int i = 0; i < veiculo.size(); i++){
-                ids.add(veiculo.get(i).getId());
-                titulo.add(veiculo.get(i).toString());
+            ArrayList<Servico_peca> servico_pecas;
+            ArrayList<Peca> peca = new ArrayList();
+            servico_pecas = new Servico_pecaDAO().select(servico.getId());
+            for(int i = 0; i < servico_pecas.size(); i++){
+                peca.add(servico_pecas.get(i).getPeca());
             }
-            
             
             map.put("descricao", servico.getDescricao());
             map.put("dia1", d_inicio.get(Calendar.DAY_OF_MONTH));
@@ -56,10 +54,12 @@ import spark.Response;
             map.put("ano1", d_inicio.get(Calendar.YEAR));
             map.put("ano2", d_fim.get(Calendar.YEAR));
             map.put("valor", servico.getValor());
-            map.put("funcionario", new FuncionarioDAO().select());
-            map.put("cliente", new ClienteDAO().select());
-            map.put("veiculo", new VeiculoDAO().select());
+            map.put("funcionarios", new FuncionarioDAO().select());
+            map.put("clientes", new ClienteDAO().select());
+            map.put("veiculos", new VeiculoDAO().select());
             map.put("id", servico.getId());
+            map.put("servico_pecas", servico_pecas);
+            map.put("pecas", peca);
 
         } catch (SQLException ex) {
             Logger.getLogger(ServicoScreenUpdateCommand.class.getName()).log(Level.SEVERE, null, ex);

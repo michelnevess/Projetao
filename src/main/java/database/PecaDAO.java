@@ -21,7 +21,6 @@ import model.Peca;
 public class PecaDAO {
     
     public PecaDAO(){
-        
     }
     
     public void delete(int id) throws SQLException {

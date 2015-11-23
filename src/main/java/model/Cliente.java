@@ -11,7 +11,7 @@ package model;
  */
 public class Cliente {
     private int id;
-    private String nome, email, cpf, cnpj, telefone;
+    private String nome, email, cpf = "", cnpj = "", telefone;
     private boolean ativo, fisico;
     private Endereco endereco;
 
@@ -27,10 +27,6 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    @Override
-    public String toString() {
-        return nome + "," + email + "," + cpf + "," + cnpj + "," + telefone + "," + fisico + endereco.toString();
-    }
 
     public Cliente() {
       

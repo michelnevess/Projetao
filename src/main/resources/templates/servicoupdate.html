@@ -1,0 +1,248 @@
+<html>
+    <head>
+        <title>Oficina G</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="projetao.css" type="text/css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div id='div1' name='div1'>
+            <h1 id='oficina'>Oficina Gambiarra</h1>
+            <center>
+                <div class="rotas">
+                    <a id='links' href="/">In&iacute;cio </a>
+                    <a id='links' href="/veiculo">Ve&iacute;culos </a>
+                    <a id='links' href="/funcionario">Funcion&aacute;rios </a>
+                    <a id='links' href="/cliente">Clientes </a>
+                    <a id='links' href="/peca">Pe&ccedil;as </a>
+                    <a id='links' href="/servico">Servi&ccedil;os </a>
+                    <a id='links' href="/historico">Hist&oacute;rico</a>
+                </div>
+            </center>
+        </div>
+    <center>
+        <br>
+        <div id='div2' class="form">
+            <div id="topo">
+                <h2>Alterar Servi&ccedil;os</h2>
+            </div>
+            <div id="inferior">
+                <br>
+                <form name = "form1" class="form1"method="get" action="/servicoedit">
+                    <table>
+
+                        <tr>
+                            <td class="normal">Funcion&aacute;rio: </td>
+                            <td class="normal">
+                                <select id="funcionario" name="funcionario">
+                                    {{#funcionarios}}
+                                    <option value="{{id}}">{{nome}}</option>
+                                    {{/funcionarios}}
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="normal">Cliente: </td>
+                            <td class="normal">
+                                <select id="cliente" name="cliente">
+                                    {{#clientes}}
+                                    <option value="{{id}}">{{nome}}</option>
+                                    {{/clientes}}
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="normal">Veiculo: </td>
+                            <td class="normal">
+                                <select id="veiculo" name="veiculo">
+                                    {{#veiculos}}
+                                    <option value="{{id}}">{{modelo}}, {{Chassi}}, {{placa}}</option>
+                                    {{/veiculos}}
+                                </select>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td class="normal">Valor</td>
+                            <td class="normal">
+                                <input type="text" size="10" id="valor" name="valor" value="{{valor}}">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="normal">Data Inicio: </td>
+                            <td class="normal">
+                                <select id="dia1" name="dia1">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                                <select id="mes1" name="mes1">
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Fevereiro</option>
+                                    <option value="3">Mar&ccedil;o</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
+                                <input type="text" size="4" id="ano" name="ano" value="{{ano1}}"><!--4-->
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="normal">Data Fim: </td>
+                            <td class="normal">
+                                <select id="dia2" name="dia2">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                                <select id="mes2" name="mes2">
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Fevereiro</option>
+                                    <option value="3">Mar&ccedil;o</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
+                                <input type="text" size="4" id="ano2" name="ano2" value="{{ano2}}"><!--4-->
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td class="normal">Descri&ccedil;&atilde;o: </td>
+                            <td class="normal">
+                                <textarea cols="45" rows="4" id="descricao" name="descricao">{{descricao}}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="normal">Tipos de Pe&ccedil;as: </td>
+                            <td class="normal">
+                                <input type="text" size="5" id="valor" name="valor">
+                            </td>
+                        </tr>
+                        <div id="qpeca">
+                            <tr>
+                                <td class="normal">Pe&ccedil;a: </td>
+                                <td class="normal">
+                                    <select id="peca" name="peca">
+                                        {{#pecas}}
+                                        <option value="{{id}}">{{nome}}</option>
+                                        {{/pecas}}
+                                    </select>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="normal">Unidade(s): </td>
+                                <td class="normal">
+                                    <input type="text" size="10" id="unidade" name="unidade">
+                                </td>
+                            </tr>
+                        </div>
+                    </table>
+
+                    <table>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Unidades</th>
+                        </tr>
+                        {{#servico_pecas}}
+                        <tr>
+                            <td>{{peca.getNome}}</td>
+                            <td>{{quantidade}}</td>
+                        </tr>
+                        {{/servico_pecas}}
+                    </table>
+                    <input type="hidden" id="id" name="id"value="{{id}}">
+                    <br><br>
+                    <input id="criar" type="submit" value="Alterar">
+                    </div>
+                    </div>
+                </form>
+                </center>
+                <div id='div3' name='div3'>
+                    <center>
+                        <h3>Oficina G</h3>
+                        <p>A Oficina da Gambiarra, onde nada se perde, nada se recusa, tudo se resolve.</p>
+                    </center>
+                </div>
+
+
+                </body>
+                </html>
