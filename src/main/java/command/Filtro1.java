@@ -28,7 +28,7 @@ public class Filtro1 extends Command {
     public Filtro1(Request request, Response response) throws SQLException {
         super(request, response);
         
-        resposta = new JSONArray(new ServicoDAO().filtro(request.params(":valor"))).toString();
+        resposta = new JSONArray(new ClienteDAO().filtro(request.params(":valor"))).toString();
         
 
     }

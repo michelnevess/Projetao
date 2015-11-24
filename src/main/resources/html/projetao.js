@@ -17,26 +17,30 @@ function createRequest() {
 }
 
 
-function atualizaPagina() {
-    if (request.readyState === 4) {
-
-        JSONobject = JSON.parse(request.responseText);
-        console.log(JSONobject[0].cliente.nome);
-
+function atualizaCliente() {
+    if (request.readyState === 4) {        
+        JSONobject = JSON.parse(request.responseText);        
+        var html = "<table border = '1'>";
         for (var i = 0; i < JSONobject.length; i++) {
-            document.getElementById("conteudo").innerHTML += JSONobject[i];
+            html  += "<tr><td>"+ JSONobject[i].nome +"</td>";
+            html += "<td>"+ JSONobject[i].email +"</td>";
+            html += "<td>"+ JSONobject[i].cpf +"</td></tr>";
         }
+        html += "</table>";
+        document.getElementById("conteudo").innerHTML += html;
     }
 }
 
-function cliente(valor) {
-    if (!valor == "") {
-        var url = "http://localhost:4567/filtro1/" + valor;
+function funcionario() {
+    var valor = document.getElementById("nome").value;
+    //console.log(valor);
+    //if (valor !== "") {
+        var url = "http://localhost:4567/filtro2/" + valor;
         createRequest();
         request.open("GET", url, true);
-        request.onreadystatechange = atualizaPagina;
+        request.onreadystatechange = atualizaCliente;
         request.send(null);
-    }
+    //}
 }
 
 

@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="projetao.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="projetao.js"></script>
     </head>
 
     <body>
@@ -25,7 +26,16 @@
     <center>
         <div>
             <br>
-            <td><a href="/funcionariocadastro" class="linkn">Cadastrar Funcion&aacute;rio</a></td>
+            <a href="/funcionariocadastro" class="linkn">Cadastrar Funcion&aacute;rio</a>
+            <br><br>
+            <form name="form1" id="form1">
+                <table>
+                    <tr>
+                        <td><input type="text" id="nome" name="nome"></td>
+                        <td><button type="button" onclick="funcionario()">Pesquisar</button></td>
+                    </tr>
+                </table>
+            </form>
         </div>
 
         <div id='div2' name='div2'>
@@ -41,7 +51,7 @@
                     <th colspan='2'>A&ccedil;&atilde;o</th>
 
                 </tr>
-
+                <div id="conteudo" name="conteudo">
                 {{#funcionarios}}
                 <tr>
 
@@ -55,7 +65,7 @@
 
                 </tr>
                 {{/funcionarios}}
-
+                </div>
 
             </table>
         </div>

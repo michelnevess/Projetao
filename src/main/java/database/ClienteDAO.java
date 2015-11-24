@@ -90,7 +90,6 @@ public class ClienteDAO {
     public Cliente selectById(int id) throws SQLException {
         Cliente cliente;
         try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM cliente WHERE id = ?;")) {
-            System.out.println("id:"+id);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             cliente = new Cliente();
@@ -120,6 +119,22 @@ public class ClienteDAO {
          
         }
 
+    }
+    
+    public Cliente filtro(String nome) throws SQLException {
+        Cliente cliente;
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM cliente WHERE nome ILIKE ?;")) {
+            preparedStatement.setString(1, nome);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            cliente = new Cliente();
+            if (resultSet.next()) {
+                
+                cliente = new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("cnpj"), resultSet.getString("telefone"), resultSet.getBoolean("ativo"), resultSet.getBoolean("fisico"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
+            }else {
+                
+            }
+        }
+        return cliente;
     }
     
     

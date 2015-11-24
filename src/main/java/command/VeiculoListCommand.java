@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Cliente;
 
 import model.Veiculo;
 import spark.Request;
@@ -22,17 +23,17 @@ public class VeiculoListCommand extends Command {
         super(request, response);
         
         ArrayList<Veiculo> veiculos;
-        ArrayList<String> nome = new ArrayList();
+        ArrayList<Cliente> nome = new ArrayList();
         try {
             veiculos = new VeiculoDAO().select();
             
             for(int i = 0; i < veiculos.size(); i++){
-                nome.add(veiculos.get(i).getCliente().getNome());
+                nome.add(veiculos.get(i).getCliente());
             }
             
             if (veiculos.size()> 0) { 
                 map.put("veiculos", veiculos);
-                map.put("nome", nome);
+                map.put("clientes", nome);
             }
         } catch (SQLException ex) {
             Logger.getLogger(VeiculoListCommand.class.getName()).log(Level.SEVERE, null, ex);

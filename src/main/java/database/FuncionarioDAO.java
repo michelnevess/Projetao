@@ -89,7 +89,6 @@ public class FuncionarioDAO {
     public Funcionario selectById(int id) throws SQLException {
         Funcionario funcionario;
         try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario WHERE id = ?;")) {
-            System.out.println("id:"+id);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             funcionario = new Funcionario();
@@ -116,4 +115,24 @@ public class FuncionarioDAO {
          
         }
     }
+    
+    public ArrayList<Funcionario> filtro(String nome) throws SQLException {
+        Funcionario funcionario;
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario WHERE nome ILIKE ?;")) {
+            preparedStatement.setString(1, nome);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            funcionario = new Funcionario();
+            if (resultSet.next()) {
+                
+                funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
+            }else {
+                
+            }
+        }
+        ArrayList<Funcionario> vet  =  new ArrayList();
+        vet.add(funcionario);
+        return vet;
+    }
+    
+    
 }

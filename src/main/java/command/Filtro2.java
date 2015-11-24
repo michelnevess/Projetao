@@ -1,40 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package command;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-import database.ClienteDAO;
-import database.ServicoDAO;
+import database.FuncionarioDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.Cliente;
-import model.Servico;
+import model.*;
+import org.json.JSONArray;
 import spark.Request;
 import spark.Response;
-import org.json.*;
 
 public class Filtro2 extends Command {
 
     private String resposta;
-    
 
     public Filtro2(Request request, Response response) throws SQLException {
         super(request, response);
-        
-        resposta = new JSONArray(new ServicoDAO().filtro(request.params(":valor"))).toString();
-        
+         JSONArray jsonArray = new JSONArray(new FuncionarioDAO().filtro(request.params(":valor")));
+         this.resposta = jsonArray.toString();
+/*
+        String outp = "[";
+        Funcionario funcionario = new FuncionarioDAO().filtro(request.params(":valor"));
+        //if (!"[".equals(outp)) {
+        //    outp += ",";
+        //}
+        outp += "{id:" + funcionario.getId() + ",";
+        outp += "nome:" + funcionario.getNome() + ",";
+        outp += "cpf:" + funcionario.getCpf() + "}";
 
+        outp += "]";
+
+        this.resposta = outp;
+*/
     }
 
     public String getResposta() {
         return this.resposta;
-    }
 
+    }
 }

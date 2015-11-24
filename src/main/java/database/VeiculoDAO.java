@@ -40,7 +40,7 @@ public class VeiculoDAO {
 
         try {
             conexao = new Conexao().getConexao();
-            preparedStatement = conexao.prepareStatement("INSERT INTO veiculo (modelo, marca, ano, placa, chassi, cliente_id) VALUES (?, ?, ?, ?, ?, ?);");
+            preparedStatement = conexao.prepareStatement("INSERT INTO veiculo (modelo, marca, ano, placa, chassi, cliente_id, ativo) VALUES (?, ?, ?, ?, ?, ?, true);");
             preparedStatement.setString(1, veiculo.getModelo());
             preparedStatement.setString(2, veiculo.getMarca());
             preparedStatement.setString(3, veiculo.getAno());
