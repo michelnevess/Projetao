@@ -31,7 +31,7 @@
         <div id='div2' name='div2'>
             <h2>Ve&iacute;culos</h2>
             <table>
-                <tr>
+                <thead>
 
                     <th>Cliente</th>
                     <th>Placa</th>
@@ -40,7 +40,8 @@
                     <th>Marca</th>
                     <th>Ano</th>
                     <th colspan='2'>A&ccedil;&atilde;o</th>
-                </tr>
+                </thead>
+                <tbody>
                 {{#veiculos}}
                 <tr>
                     <td>{{cliente.getNome}}</td>
@@ -54,6 +55,7 @@
                     <td><a href="/veiculodelete" class="views">Remover</a></td>
                 </tr>
                 {{/veiculos}}
+                </tbody>
             </table>
         </div>
     </center>

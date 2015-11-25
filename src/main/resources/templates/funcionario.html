@@ -30,10 +30,12 @@
             <br><br>
             <form name="form1" id="form1">
                 <table>
+                    <tbody>
                     <tr>
                         <td><input type="text" id="nome" name="nome"></td>
                         <td><button type="button" onclick="funcionario()">Pesquisar</button></td>
                     </tr>
+                    </tbody>
                 </table>
             </form>
         </div>
@@ -41,7 +43,8 @@
         <div id='div2' name='div2'>
             <h2>Funcion&aacute;rios</h2>
             <table>
-                <tr>
+                <thead>
+                
 
                     <th>Nome</th>
                     <th>Telefone</th>
@@ -50,8 +53,10 @@
                     <th>Endere&ccedil;o</th>
                     <th colspan='2'>A&ccedil;&atilde;o</th>
 
-                </tr>
-                <div id="conteudo" name="conteudo">
+                
+                
+                </thead>
+                <tbody id="conteudo">
                 {{#funcionarios}}
                 <tr>
 
@@ -65,8 +70,8 @@
 
                 </tr>
                 {{/funcionarios}}
-                </div>
-
+                
+                </tbody>
             </table>
         </div>
     </center>

@@ -31,37 +31,38 @@
         <div id='div2' name='div2'>
             <h2>Servi&ccedil;o</h2>
             <table>
-                <tr>
-                    <th>Descri&ccedil;&atilde;o</th>
-                    <th>Valor da M&atilde;o de Obra: </th>
-                    <th>Funcion&aacute;rio</th>
-                    <th>Cliente</th>
-                    <th>Veiculo</th>
-                    <th>Data In&iacute;cio</th>
-                    <th>Data Fim</th>
-                    <th colspan='2'>A&ccedil;&atilde;o</th>
-                </tr>
-
-                <tr>
-                    {{#servicos}}
-                    <td><a href="/servico_peca/{{id}}" class="views">{{descricao}}</a></td>
-                    <td>{{valor}}</td>
-
-
-                    <td>{{funcionario.nome}}</td>
+                <thead>
+                <th>Descri&ccedil;&atilde;o</th>
+                <th>Valor da M&atilde;o de Obra: </th>
+                <th>Funcion&aacute;rio</th>
+                <th>Cliente</th>
+                <th>Veiculo</th>
+                <th>Data In&iacute;cio</th>
+                <th>Data Fim</th>
+                <th colspan='2'>A&ccedil;&atilde;o</th>
+                </head>
+                <tbody>
+                    <tr>
+                        {{#servicos}}
+                        <td><a href="/servico_peca/{{id}}" class="views">{{descricao}}</a></td>
+                        <td>{{valor}}</td>
 
 
-                    <td>{{cliente.nome}}</td>
+                        <td>{{funcionario.nome}}</td>
 
 
-                    <td>{{veiculo.chassi}}</td>
+                        <td>{{cliente.nome}}</td>
 
 
-                    <td>{{d_inicio}}</td>
-                    <td>{{d_fim}}</td>
-                    <td><a href="/servicoupdate/{{id}}" class="views">Editar</a></td>
-                    {{/servicos}}
-                </tr>
+                        <td>{{veiculo.chassi}}</td>
+
+
+                        <td>{{d_inicio}}</td>
+                        <td>{{d_fim}}</td>
+                        <td><a href="/servicoupdate/{{id}}" class="views">Editar</a></td>
+                        {{/servicos}}
+                    </tr>
+                </tbody>
             </table>
         </div>
     </center>

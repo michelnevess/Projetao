@@ -14,24 +14,28 @@ public class Filtro2 extends Command {
 
     public Filtro2(Request request, Response response) throws SQLException {
         super(request, response);
-         JSONArray jsonArray = new JSONArray(new FuncionarioDAO().filtro(request.params(":valor")));
-         this.resposta = jsonArray.toString();
+        JSONArray jsonArray = new JSONArray(new FuncionarioDAO().filtro(request.params(":valor")));
+        this.resposta = jsonArray.toString();
 /*
         String outp = "[";
-        Funcionario funcionario = new FuncionarioDAO().filtro(request.params(":valor"));
-        //if (!"[".equals(outp)) {
-        //    outp += ",";
-        //}
-        outp += "{id:" + funcionario.getId() + ",";
-        outp += "nome:" + funcionario.getNome() + ",";
-        outp += "cpf:" + funcionario.getCpf() + "}";
+        ArrayList<Funcionario> funcionario = new FuncionarioDAO().filtro(request.params(":valor"));
+        
+        for (int i = 0; i < funcionario.size(); i++) {
+            outp += "{id:" + funcionario.get(i).getId() + ",";
+            outp += "nome:" + funcionario.get(i).getNome() + ",";
+            outp += "cpf:" + funcionario.get(i).getCpf() + ",";
+            outp += "endereco:" + funcionario.get(i).getEndereco().toString() + ",";
+            outp += "telefone:" + funcionario.get(i).getTelefone() + ",";
+            outp += "email:" + funcionario.get(i).getEmail() + "}";
 
+            
+
+        }
         outp += "]";
-
         this.resposta = outp;
+    }
 */
     }
-
     public String getResposta() {
         return this.resposta;
 

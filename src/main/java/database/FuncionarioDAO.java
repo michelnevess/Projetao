@@ -117,21 +117,18 @@ public class FuncionarioDAO {
     }
     
     public ArrayList<Funcionario> filtro(String nome) throws SQLException {
-        Funcionario funcionario;
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario WHERE nome ILIKE ?;")) {
-            preparedStatement.setString(1, nome);
+        ArrayList<Funcionario> funcionario = new ArrayList();
+        try (Connection conexao = new Conexao().getConexao(); 
+                PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario WHERE nome ILIKE ? AND ativo = true;")) {
+            preparedStatement.setString(1, "%" + nome + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
-            funcionario = new Funcionario();
-            if (resultSet.next()) {
+            
+            while(resultSet.next()){
                 
-                funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
-            }else {
-                
+            funcionario.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
             }
         }
-        ArrayList<Funcionario> vet  =  new ArrayList();
-        vet.add(funcionario);
-        return vet;
+        return funcionario;
     }
     
     

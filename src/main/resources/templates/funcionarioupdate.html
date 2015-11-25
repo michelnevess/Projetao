@@ -33,6 +33,7 @@
                 <br>
                 <form name = "form1" class="form1" action="/funcionarioedit/" method="post">
                     <table>
+                        <tbody>
                         <tr>
                             <td class="normal">Nome: </td>
                             <td class="normal">
@@ -97,10 +98,12 @@
                             <td class="normal">Complemento: </td>
                             <td class="normal">
                                 <textarea cols="45" rows="4" id="complemento" name="complemento" >{{complemento}}</textarea>
-                            </td>
-                        </tr>
+                            
                         <input type="hidden" value="{{id}}" name="id" id="id">
                         <input type="hidden" value="{{id2}}" name="id2" id="id2">
+                        </td>
+                        </tr>
+                        </tbody>
                     </table>
                     <br>
                     <input id="criar" type="submit" value="Alterar">

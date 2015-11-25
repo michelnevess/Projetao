@@ -28,39 +28,43 @@
         <div id='div2' name='div2'>
             <br>
             <table>
-                <tr>
-                    <td><a href="/clientefisicocadastro" class="linkn"> Cadastrar Cliente F&iacute;sico </a></td>
-                    <td><a href="/clientejuridicocadastro" class="linkn"> Cadastrar Cliente Jur&iacute;dico </a></td>
-                    <td><a href="/clientefisico" class="linkn"> Listar Cliente F&iacute;sico </a></td>
-                    <td><a href="/clientejuridico" class="linkn" onclick="juridico()"> Listar Cliente Jur&iacute;dico </a></td><br>
+                <tbody>
+                    <tr>
+                        <td><a href="/clientefisicocadastro" class="linkn"> Cadastrar Cliente F&iacute;sico </a></td>
+                        <td><a href="/clientejuridicocadastro" class="linkn"> Cadastrar Cliente Jur&iacute;dico </a></td>
+                        <td><a href="/clientefisico" class="linkn"> Listar Cliente F&iacute;sico </a></td>
+                        <td><a href="/clientejuridico" class="linkn" onclick="juridico()"> Listar Cliente Jur&iacute;dico </a></td><br>
                 </tr>
+                </tbody>
             </table>
 
             <table id="conteudo">
+                <thead>
 
-                <tr>
 
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>CNPJ</th>
-                    <th>Endere&ccedil;o</th>
-                    <th colspan='2'>A&ccedil;&atilde;o</th>
-                </tr>
-                {{#clientes}}
-                <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Email</th>
+                <th>CNPJ</th>
+                <th>Endere&ccedil;o</th>
+                <th colspan='2'>A&ccedil;&atilde;o</th>
 
-                    <td>{{nome}}</td>
-                    <td>{{telefone}}</td>
-                    <td>{{email}}</td>
-                    <td>{{cnpj}}</td>
-                    <td>{{endereco.getEstado}}, {{endereco.getCidade}}, {{endereco.getBairro}}, {{endereco.getRua}}, {{endereco.getNumero}}, {{endereco.getComplemento}}</td>
-                    <td><a href="/clientejuridicoupdate/{{id}}" class="views">Editar</a></td>
-                    <td><a href="/clientedelete/{{id}}" class="views">Remover</a></td>
+                </thead>
+                <tbody>
+                    {{#clientes}}
+                    <tr>
 
-                </tr>
-                {{/clientes}}
+                        <td>{{nome}}</td>
+                        <td>{{telefone}}</td>
+                        <td>{{email}}</td>
+                        <td>{{cnpj}}</td>
+                        <td>{{endereco.getEstado}}, {{endereco.getCidade}}, {{endereco.getBairro}}, {{endereco.getRua}}, {{endereco.getNumero}}, {{endereco.getComplemento}}</td>
+                        <td><a href="/clientejuridicoupdate/{{id}}" class="views">Editar</a></td>
+                        <td><a href="/clientedelete/{{id}}" class="views">Remover</a></td>
 
+                    </tr>
+                    {{/clientes}}
+                </tbody>
             </table>
 
 
