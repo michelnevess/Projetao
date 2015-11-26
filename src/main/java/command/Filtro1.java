@@ -22,19 +22,18 @@ import org.json.*;
 
 public class Filtro1 extends Command {
 
-    private String resposta;
+    private String teste;
     
 
     public Filtro1(Request request, Response response) throws SQLException {
         super(request, response);
-        
-        resposta = new JSONArray(new ClienteDAO().filtro(request.params(":valor"))).toString();
+        this.teste = String.valueOf(new ClienteDAO().cnpj(request.params(":valor")));
         
 
     }
 
-    public String getResposta() {
-        return this.resposta;
+    public String getTeste() {
+        return this.teste;
     }
 
 }

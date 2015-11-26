@@ -25,20 +25,26 @@ public class EnderecoDAO {
     }
     
 
-    public void insert(Endereco endereco) throws SQLException {
+    public int insert(Endereco endereco) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
 
         try {
             conexao = new Conexao().getConexao();
-            preparedStatement = conexao.prepareStatement("INSERT INTO endereco (estado, cidade, bairro, rua, numero, complemento) VALUES (?, ?, ?, ?, ?, ?);");
+            preparedStatement = conexao.prepareStatement("INSERT INTO endereco (estado, cidade, bairro, rua, numero, complemento) VALUES (?, ?, ?, ?, ?, ?) RETURNING id;");
             preparedStatement.setString(1, endereco.getEstado());
             preparedStatement.setString(2, endereco.getCidade());
             preparedStatement.setString(3, endereco.getBairro());
             preparedStatement.setString(4, endereco.getRua());
             preparedStatement.setInt(5, Integer.parseInt(endereco.getNumero()));
             preparedStatement.setString(6, endereco.getComplemento());
-            preparedStatement.executeUpdate();
+            ResultSet rs  = preparedStatement.executeQuery();
+            if (rs.next()) {
+                endereco.setId(rs.getInt("id"));
+                return rs.getInt("id");
+            }
+            endereco.setId(-1);
+            return -1;
         } catch (SQLException sqle) {
             
         } finally {
@@ -61,6 +67,8 @@ public class EnderecoDAO {
                 }
             }
         }
+                    endereco.setId(-1);
+            return -1;
     }
    
     public ArrayList<Endereco> select() throws SQLException {

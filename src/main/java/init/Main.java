@@ -22,7 +22,7 @@ public class Main {
         staticFileLocation("/html"); 
         
         
-        get("/filtro1/:valor", (req, res) -> new Filtro1(req, res).getResposta());
+        get("/filtro1/:valor", (req, res) -> new Filtro1(req, res).getTeste());
         get("/filtro2/:valor", (req, res) -> new Filtro2(req, res).getResposta());
         
         
@@ -143,11 +143,11 @@ public class Main {
             }
         }, new MustacheTemplateEngine());
 
-        post("/clienteinsert/:tipo", new TemplateViewRoute() {
+        post("/clienteinsert", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ClienteInsertCommand(request, response).getMap(), "/");
+                    return new ModelAndView(new ClienteInsertCommand(request, response), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }

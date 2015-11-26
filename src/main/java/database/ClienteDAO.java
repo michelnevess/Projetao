@@ -37,7 +37,6 @@ public class ClienteDAO {
     public void insert(Cliente cliente) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
-
         try {
             conexao = new Conexao().getConexao();
             preparedStatement = conexao.prepareStatement("INSERT INTO cliente (nome, telefone, email, endereco_id, cpf, cnpj, fisico, ativo) VALUES (?, ?, ?, ?, ?, ?, ?, true);");
@@ -121,20 +120,17 @@ public class ClienteDAO {
 
     }
     
-    public Cliente filtro(String nome) throws SQLException {
-        Cliente cliente;
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM cliente WHERE nome ILIKE ?;")) {
-            preparedStatement.setString(1, nome);
+    public boolean cnpj(String cnpj) throws SQLException {
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM cliente WHERE cnpj = ?;")) {
+            preparedStatement.setString(1, cnpj);
             ResultSet resultSet = preparedStatement.executeQuery();
-            cliente = new Cliente();
+            
             if (resultSet.next()) {
-                
-                cliente = new Cliente(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("cnpj"), resultSet.getString("telefone"), resultSet.getBoolean("ativo"), resultSet.getBoolean("fisico"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
+                return true;
             }else {
-                
+                return false;
             }
         }
-        return cliente;
     }
     
     

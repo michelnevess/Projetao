@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="projetao.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="projetao.js"></script>
     </head>
 
     <body>
@@ -30,7 +31,7 @@
             </div>
             <div id="inferior">
                 <br>
-                <form name = "form1" class="form1" action="/clienteinsert/j" method="post">
+                <form name = "form1" class="form1" action="/clienteinsert" method="post">
                     <table>
                         <tbody>
                             <tr>
@@ -57,8 +58,9 @@
                             <tr>
                                 <td class="normal">CNPJ: </td>
                                 <td class="normal">
-                                    <input type="text" size="35" id="cnpj" name="cnpj" maxlength="11">
+                                    <input type="text" size="35" id="cnpj" name="cnpj" onblur="ajaxCNPJ(this.value)">
                                 </td>
+                                <td id="conteudo"  style="display: none"></td>
                             </tr>
                             <tr>
                                 <td class="normal">Estado: </td>
@@ -102,9 +104,11 @@
                         </tbody>
                     </table>
                     <br>
+                    <input type="hidden" name="tipo" value="j">
                     <input id="criar" type="submit" value="Cadastrar">
                     </div>
                     </div>
+        
                 </form>
                 </center>
                 <div id='div3' name='div3'>

@@ -37,7 +37,7 @@ public class ClienteInsertCommand extends Command {
         endereco.setCidade(request.queryParams("cidade"));
         endereco.setBairro(request.queryParams("bairro"));
         endereco.setRua(request.queryParams("rua"));
-        endereco.setNumero(request.queryParams("numero"));
+        endereco.setNumero(request.queryParams("numero").trim());
         endereco.setComplemento(request.queryParams("complemento"));
         new EnderecoDAO().insert(endereco);
         
@@ -46,17 +46,18 @@ public class ClienteInsertCommand extends Command {
         cliente.setNome(request.queryParams("nome"));
         cliente.setTelefone(request.queryParams("telefone"));
         cliente.setEmail(request.queryParams("email"));
-        if(request.queryParams(":tipo").equals("f")){
-            cliente.setCpf(request.queryParams("cpf"));
-        }else
-            cliente.setCnpj(request.queryParams("cnpj"));
         
+        if(request.queryParams("tipo").equals("f")){
+            cliente.setCpf(request.queryParams("cpf").trim());
+        }else {
+            cliente.setCnpj(request.queryParams("cnpj").trim());
+        }
         cliente.setFisico(Boolean.parseBoolean(request.queryParams("fisico")));
-        cliente.setEndereco( new EnderecoDAO().ultimo());
+        cliente.setEndereco(endereco);
         
         new ClienteDAO().insert(cliente);
-        
-        map.put("message", "Voce acaba de inserir o cliente com sucesso!");
+        response.redirect("/");
+        //map.put("message", "Voce acaba de inserir o cliente com sucesso!");
     }    
     
 
