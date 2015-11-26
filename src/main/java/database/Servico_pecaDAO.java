@@ -63,7 +63,7 @@ public class Servico_pecaDAO {
     public ArrayList<Servico_peca> select(int id) throws SQLException {
         ArrayList<Servico_peca> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico_peca.id, servico_peca.quantidade, servico_peca.peca_id, servico_peca.valor WHERE servico_peca.servico_id = ?;");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT id, quantidade, peca_id, valor FROM servico_peca WHERE servico_id = ?;");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
@@ -91,7 +91,7 @@ public class Servico_pecaDAO {
     public double total(int id) throws SQLException{
         double total;
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico.valor, servico.descricao, SUM(servico_peca.quantidade*servico_peca.valor) AS total FROM servico_peca INNER JOIN servico ON(servico.id = servico_peca.servico_id) WHERE servico_id = ? GROUP BY servico.descricao, servico.valor, total ");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico.valor, servico.descricao, SUM(servico_peca.quantidade*servico_peca.valor) AS total FROM servico_peca INNER JOIN servico ON(servico.id = servico_peca.servico_id) WHERE servico_peca.servico_id = ? GROUP BY servico.descricao, servico.valor, total ");
         preparedStatement.setInt(1, id);
         ResultSet resultSet = preparedStatement.executeQuery();
         return resultSet.getDouble("total") + resultSet.getDouble("valor");

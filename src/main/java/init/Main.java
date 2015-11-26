@@ -24,7 +24,7 @@ public class Main {
         
         get("/filtro1/:valor", (req, res) -> new Filtro1(req, res).getTeste());
         get("/filtro2/:valor", (req, res) -> new Filtro2(req, res).getResposta());
-        
+        get("/lipeca", (req, res) -> new Peca(req, res).getResposta());
         
         
         get("/", new TemplateViewRoute() {

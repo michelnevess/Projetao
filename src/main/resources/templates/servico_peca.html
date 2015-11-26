@@ -1,16 +1,67 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Oficina G</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/projetao.css" type="text/css" rel="stylesheet">
     </head>
+
     <body>
-        <div>TODO write content</div>
-    </body>
+
+        <div id='div1' name='div1'>
+            <h1 id='oficina'>Oficina Gambiarra</h1>
+            <center>
+                <div class="rotas">
+                    <a id='links' href="/">In&iacute;cio </a>
+                    <a id='links' href="/veiculo">Ve&iacute;culos </a>
+                    <a id='links' href="/funcionario">Funcion&aacute;rios </a>
+                    <a id='links' href="/cliente">Clientes </a>
+                    <a id='links' href="/peca">Pe&ccedil;as </a>
+                    <a id='links' href="/servico">Servi&ccedil;os </a>
+                    <a id='links' href="/historico">Hist&oacute;rico</a>
+                </div>
+            </center>
+        </div>
+    <center>
+
+        <div id='div2' name='div2'>
+            <h2>Gastos</h2>
+            <table>
+                <thead>
+
+                <th>Produto</th>
+                <th>Unidades</th>
+                <th>Valor Pago</th>
+                </thead>
+                <tbody>
+                    {{#servico_pecas}}
+                    <tr>
+                        <td>{{nome}}</td>
+                        <td>{{quantidade}}</td>
+                        <td>{{valor}}</td>
+                    </tr>
+                    {{/servico_pecas}}
+                    <tr>
+                        <td>M&atilde;o-de-Obra</td>
+                        <td></td>
+                        <td>{{mao}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td>{{total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </center>
+    <div id='div3' name='div3'>
+        <center>
+            <h3>Oficina G</h3>
+            <p>A Oficina da Gambiarra, onde nada se perde, nada se recusa, tudo se resolve.</p>
+        </center>
+    </div>
+
+
+</body>
 </html>

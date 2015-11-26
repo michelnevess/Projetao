@@ -218,16 +218,117 @@ function validaNome() {
     }
 }
 
-function validaQuantidade(quantidade) {
-    //var quantidade = document.getElementsByName("quantidade");
-    alert(quatidade);
-    var reg = /[1-9]/
-    //for (var i = 0; i < quantidade.length; i++) {
-        for(var k = 0; k < quantidade[i]; k++){
-            if(!reg.test(quantidade.charAt(k))){
-                return false;
+function validaEstado() {
+    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+    var nome = document.getElementById("estado").value;
+    if (reg.test(nome)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validaCidade() {
+    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+    var nome = document.getElementById("cidade").value;
+    if (reg.test(nome)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validaBairro() {
+    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+    var nome = document.getElementById("bairro").value;
+    if (reg.test(nome)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validaRua() {
+    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+[0-9]*$/
+    var nome = document.getElementById("rua").value;
+    if (reg.test(nome)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function validaNumero() {
+    var reg = /^[0-9]*$/
+    var nome = document.getElementById("numero").value;
+    if (reg.test(nome)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+function adiciona(quantidade) {
+    if (request.readyState === 4) {
+        JSONobject = JSON.parse(request.responseText);
+        var html = "";
+        for (var i = 0; i < JSONobject.length; i++) {
+        html+= "<tr><td class=\"normal\"><select id=\"peca\" name=\"peca\">";
+        html+="<option value=\""+JSONobject[i].id+"\">"+JSONobject[i].nome+"</option></select></td></tr>";
+        html+= "<tr><td class=\"normal\">Unidade(s): </td><td class=\"normal\">";
+        html+="<input type=\"text\" size=\"10\" id=\"unidade\" name=\"unidade\"></td></tr>";
+    }
+}
+
+function quantidade(quantidade) {
+    document.getElementById("conteudo").innerHTML = "";
+    document.getElementById("conteudo").style.display = "none";
+    if (quantidade != "" && quantidade != 0) {
+        document.getElementById("conteudo").style.display = "block";
+        var url = "http://localhost:4567/lipeca/";
+        createRequest();
+        request.open("GET", url, true);
+        request.onreadystatechange = adiciona;
+        request.send(null);
+    }
+
+}
+
+function validaData(){
+    var dia1 = document.getElementById("dia1").value;
+    var dia2 = document.getElementById("dia2").value;
+    var mes1 = document.getElementById("mes1").value;
+    var mes2 = document.getElementById("mes2").value;
+    var ano1 = document.getElementById("ano1").value;
+    var ano2 = document.getElementById("ano2").value;
+    
+    if(ano1>ano2){
+        return false;
+    }
+    
+    if(ano1 == ano2){
+        if(mes1>mes2){
+            return false;
+        }else{
+            if(mes1 == mes2){
+                if(dia1 > dia2){
+                    return false;
+                }
             }
         }
-    //}
-    return true;
-}
+    }
+    
+    if(dia1>28 && mes1 == 2 && (ano1%4) != 0){
+        return false;
+    }
+    
+    if(dia2>28 && mes2 == 2 && (ano2%4) != 0){
+        return false;
+    }
+    
+    return true;}
