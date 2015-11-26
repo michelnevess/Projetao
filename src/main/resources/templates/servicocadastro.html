@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="projetao.css" type="text/css" rel="stylesheet">
+        <script src="/projetao.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -30,7 +31,7 @@
             </div>
             <div id="inferior">
                 <br>
-                <form name = "form1" class="form1"method="get" action="cadastrar.php">
+                <form name = "form1" class="form1"method="post" action="/servicoinsert/">
                     <table>
                         <tbody>
                         <tr>
@@ -129,32 +130,19 @@
                         <tr>
                             <td class="normal">Tipos de Pe&ccedil;as: </td>
                             <td class="normal">
-                                <input type="text" size="5" id="valor" name="valor">
+                                <input type="text" size="5" id="tipos" name="tipos" onblur="quantidade()">
                             </td>
                         </tr>
-                        <div id="qpeca">
-                            <tr>
-                                <td class="normal">
-                                    <select id="peca" name="peca">
-                                        {{#pecas}}
-                                        <option value="{{id}}">{{nome}}</option>
-                                        {{/pecas}}
-                                    </select>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="normal">Unidade(s): </td>
-                                <td class="normal">
-                                    <input type="text" size="10" id="unidade" name="unidade">
-                                </td>
-                            </tr>
+                        
                         </tbody>
                     </table>
                     
                     <div>
                         <table>
-                            
+                            <tbody id="conteudo">
+                                
+                                
+                            </tbody>
                         </table>
                         
                     </div>

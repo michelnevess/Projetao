@@ -91,9 +91,10 @@ public class Servico_pecaDAO {
     public double total(int id) throws SQLException{
         double total;
         Connection conexao = new Conexao().getConexao();
-        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico.valor, servico.descricao, SUM(servico_peca.quantidade*servico_peca.valor) AS total FROM servico_peca INNER JOIN servico ON(servico.id = servico_peca.servico_id) WHERE servico_peca.servico_id = ? GROUP BY servico.descricao, servico.valor, total ");
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT servico.valor AS mao, SUM(servico_peca.quantidade*servico_peca.valor) AS total FROM servico_peca INNER JOIN servico ON(servico.id = servico_peca.servico_id) WHERE servico.id = ? GROUP BY servico.id;");
         preparedStatement.setInt(1, id);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        return resultSet.getDouble("total") + resultSet.getDouble("valor");
+        ResultSet resultSet = preparedStatement.executeQuery();    
+        resultSet.next();
+        return resultSet.getDouble("total") + resultSet.getDouble("mao");
     }
 }

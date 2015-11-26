@@ -21,7 +21,10 @@ import spark.QueryParamsMap;
 import spark.Request;
 import spark.Response;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import model.Peca;
 import model.Servico_peca;
 
@@ -33,13 +36,17 @@ public class ServicoInsertCommand extends Command {
     
     
 
-    public ServicoInsertCommand(Request request, Response response) throws SQLException {
+    public ServicoInsertCommand(Request request, Response response) throws SQLException, ParseException {
         super(request, response);     
         
         
         Servico servico = new Servico();
+        
+        Calendar cal = new GregorianCalendar();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        Date data = Date.valueOf(dateFormat.parse(request.queryParams("dia1") + "-" + request.queryParams("mes1")+"-"+ request.queryParams("ano1")));
         servico.setDescricao(request.queryParams("descricao"));
-        servico.setD_inicio(Date.valueOf(request.queryParams("ano1")+":"+request.queryParams("mes1")+":"+request.queryParams("dia1")));
+        servico.setD_inicio(Date.valueOf());
         servico.setD_fim(Date.valueOf(request.queryParams("ano2")+":"+request.queryParams("mes2")+":"+request.queryParams("dia2")));
         servico.setValor(Double.parseDouble(request.queryParams("valor")));
         servico.setCliente(new ClienteDAO().selectById(Integer.parseInt(request.queryParams("cliente_id"))));

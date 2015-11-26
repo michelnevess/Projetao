@@ -35,7 +35,7 @@ function atualizaFuncionario() {
     }
 }
 
-function funcionario() {
+function ajaxfuncionario() {
     var valor = document.getElementById("nome").value;
     var url = "http://localhost:4567/filtro2/" + valor;
     createRequest();
@@ -169,22 +169,6 @@ function validaCNPJ() {
     return true;
 }
 
-function espacos(s) {
-    s = s.replace(/ +/g, " ");
-    return(s);
-}
-
-function capitais(s) {
-    s = s.replace(/^[a-z]/, function (v) {
-        return(v.toUpperCase());
-    });
-    s = s.replace(/ [a-z]/g, function (v) {
-        return(v.toUpperCase());
-    });
-    return(s);
-}
-
-
 function validaEmail() {
     var email = document.getElementById("email").value;
     var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
@@ -273,62 +257,70 @@ function validaNumero() {
     }
 }
 
-function adiciona(quantidade) {
+function adiciona() {
     if (request.readyState === 4) {
         JSONobject = JSON.parse(request.responseText);
+        var quantidad = document.getElementById("tipos").value;
+        console.log(quantidad);
         var html = "";
-        for (var i = 0; i < JSONobject.length; i++) {
-        html+= "<tr><td class=\"normal\"><select id=\"peca\" name=\"peca\">";
-        html+="<option value=\""+JSONobject[i].id+"\">"+JSONobject[i].nome+"</option></select></td></tr>";
-        html+= "<tr><td class=\"normal\">Unidade(s): </td><td class=\"normal\">";
-        html+="<input type=\"text\" size=\"10\" id=\"unidade\" name=\"unidade\"></td></tr>";
+        for (var k = 0; k < quantidad; k++) {
+            html+="<tr>";
+            for (var i = 0; i < JSONobject.length; i++) {
+                html += "<td>Peca: </td><td class=\"normal\"><select id=\"peca\" name=\"peca\">";
+                html += "<option value=\"" + JSONobject[i].id + "\">" + JSONobject[i].nome + "</option></select></td>";
+                html += "<td class=\"normal\">Unidade(s): </td><td class=\"normal\">";
+                html += "<input type=\"text\" size=\"10\" id=\"unidade\" name=\"unidade\"></td>";
+            }
+            html+="</tr>";
+            
+        }
+        document.getElementById("conteudo").innerHTML += html;
     }
 }
 
-function quantidade(quantidade) {
+function quantidade() {
     document.getElementById("conteudo").innerHTML = "";
-    document.getElementById("conteudo").style.display = "none";
-    if (quantidade != "" && quantidade != 0) {
-        document.getElementById("conteudo").style.display = "block";
-        var url = "http://localhost:4567/lipeca/";
-        createRequest();
-        request.open("GET", url, true);
-        request.onreadystatechange = adiciona;
-        request.send(null);
-    }
+
+    var url = "http://localhost:4567/lipeca";
+    createRequest();
+    request.open("GET", url, true);
+    request.onreadystatechange = adiciona;
+    request.send(null);
+
 
 }
 
-function validaData(){
+function validaData() {
     var dia1 = document.getElementById("dia1").value;
     var dia2 = document.getElementById("dia2").value;
     var mes1 = document.getElementById("mes1").value;
     var mes2 = document.getElementById("mes2").value;
     var ano1 = document.getElementById("ano1").value;
     var ano2 = document.getElementById("ano2").value;
-    
-    if(ano1>ano2){
+
+    if (ano1 > ano2) {
         return false;
     }
-    
-    if(ano1 == ano2){
-        if(mes1>mes2){
+
+    if (ano1 == ano2) {
+        if (mes1 > mes2) {
             return false;
-        }else{
-            if(mes1 == mes2){
-                if(dia1 > dia2){
+        } else {
+            if (mes1 == mes2) {
+                if (dia1 > dia2) {
                     return false;
                 }
             }
         }
     }
-    
-    if(dia1>28 && mes1 == 2 && (ano1%4) != 0){
+
+    if (dia1 > 28 && mes1 == 2 && (ano1 % 4) != 0) {
         return false;
     }
-    
-    if(dia2>28 && mes2 == 2 && (ano2%4) != 0){
+
+    if (dia2 > 28 && mes2 == 2 && (ano2 % 4) != 0) {
         return false;
     }
-    
-    return true;}
+
+    return true;
+}

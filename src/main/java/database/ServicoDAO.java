@@ -80,7 +80,7 @@ public class ServicoDAO {
 
     public Servico selectById(int id) throws SQLException {
         Servico servico;
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico WHERE servico_id = ?;")) {
+        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico WHERE id = ?;")) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             servico = new Servico();

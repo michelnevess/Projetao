@@ -124,7 +124,7 @@ public class Main {
         get("/veiculodelete/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new VeiculoDeleteCommand(request, response), "");
+                return new ModelAndView(new VeiculoDeleteCommand(request, response), "/");
             }
         }, new MustacheTemplateEngine());
 
@@ -147,7 +147,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ClienteInsertCommand(request, response), "");
+                    return new ModelAndView(new ClienteInsertCommand(request, response), "/");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
