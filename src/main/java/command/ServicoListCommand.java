@@ -37,15 +37,6 @@ public class ServicoListCommand extends Command {
                 funcionarios.add(servicos.get(i).getFuncionario());
                 veiculos.add(servicos.get(i).getVeiculo());
             }
-            if(clientes.size()>0){
-                map.put("clientes", clientes);
-            }
-            if(funcionarios.size()>0){
-                map.put("funcionarios", funcionarios);
-            }
-            if(veiculos.size()>0){
-                map.put("veiculos", veiculos);
-            }
         } catch (SQLException ex) {
             Logger.getLogger(ServicoListCommand.class.getName()).log(Level.SEVERE, null, ex);
         }

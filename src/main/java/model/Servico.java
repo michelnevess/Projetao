@@ -5,7 +5,8 @@
  */
 package model;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -107,6 +108,5 @@ public class Servico {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }    
-    
+    }
 }

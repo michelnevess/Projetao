@@ -31,10 +31,7 @@ import spark.Response;
          
          try {
             servico = new ServicoDAO().selectById(Integer.parseInt(request.params(":id")));
-            Calendar d_inicio = Calendar.getInstance();
-            d_inicio.setTime(servico.getD_inicio());
-            Calendar d_fim = Calendar.getInstance();
-            d_fim.setTime(servico.getD_fim());
+            
             
             ArrayList<Integer> ids = new ArrayList();
             ArrayList<Veiculo> veiculo = new ArrayList();
@@ -45,14 +42,19 @@ import spark.Response;
             for(int i = 0; i < servico_pecas.size(); i++){
                 peca.add(servico_pecas.get(i).getPeca());
             }
+            Calendar cf = Calendar.getInstance();
+            cf.setTime((java.util.Date) servico.getD_fim());
+            
+            Calendar ci = Calendar.getInstance();
+            ci.setTime((java.util.Date) servico.getD_inicio());
             
             map.put("descricao", servico.getDescricao());
-            map.put("dia1", d_inicio.get(Calendar.DAY_OF_MONTH));
-            map.put("dia2", d_fim.get(Calendar.DAY_OF_MONTH));
-            map.put("mes1", d_inicio.get(Calendar.MONTH));
-            map.put("mes2", d_fim.get(Calendar.MONTH));
-            map.put("ano1", d_inicio.get(Calendar.YEAR));
-            map.put("ano2", d_fim.get(Calendar.YEAR));
+            map.put("dia1", ci.get(Calendar.DAY_OF_MONTH));
+            map.put("dia2", cf.get(Calendar.DAY_OF_MONTH));
+            map.put("mes1", ci.get(Calendar.MONTH));
+            map.put("mes2", cf.get(Calendar.MONTH));
+            map.put("ano1", ci.get(Calendar.YEAR));
+            map.put("ano2", cf.get(Calendar.YEAR));
             map.put("valor", servico.getValor());
             map.put("funcionarios", new FuncionarioDAO().select());
             map.put("clientes", new ClienteDAO().select());

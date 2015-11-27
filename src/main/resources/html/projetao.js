@@ -169,8 +169,7 @@ function validaCNPJ() {
     return true;
 }
 
-function validaEmail() {
-    var email = document.getElementById("email").value;
+function validaEmail(email) {
     var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
     if (reg.test(email)) {
         return true;
@@ -181,7 +180,6 @@ function validaEmail() {
 }
 
 function validaTelefone(telefone) {
-    //var telefone = document.getElementById("telefone").value;
     var reg = /^[1-9]{2}[2-9][0-9]{7,8}$/
     if (reg.test(telefone)) {
         return true;
@@ -191,31 +189,8 @@ function validaTelefone(telefone) {
     }
 }
 
-function validaNome() {
+function validaNome(nome) {
     var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    var nome = document.getElementById("nome").value;
-    if (reg.test(nome)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function validaEstado() {
-    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    var nome = document.getElementById("estado").value;
-    if (reg.test(nome)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function validaCidade() {
-    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    var nome = document.getElementById("cidade").value;
     if (reg.test(nome)) {
         return true;
     }
@@ -246,33 +221,23 @@ function validaRua() {
     }
 }
 
-function validaNumero() {
-    var reg = /^[0-9]*$/
-    var nome = document.getElementById("numero").value;
-    if (reg.test(nome)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
 
-function adiciona() {
+/*function adiciona() {
     if (request.readyState === 4) {
         JSONobject = JSON.parse(request.responseText);
         var quantidad = document.getElementById("tipos").value;
         console.log(quantidad);
         var html = "";
         for (var k = 0; k < quantidad; k++) {
-            html+="<tr>";
+            html += "<tr>";
             for (var i = 0; i < JSONobject.length; i++) {
                 html += "<td>Peca: </td><td class=\"normal\"><select id=\"peca\" name=\"peca\">";
                 html += "<option value=\"" + JSONobject[i].id + "\">" + JSONobject[i].nome + "</option></select></td>";
                 html += "<td class=\"normal\">Unidade(s): </td><td class=\"normal\">";
                 html += "<input type=\"text\" size=\"10\" id=\"unidade\" name=\"unidade\"></td>";
             }
-            html+="</tr>";
-            
+            html += "</tr>";
+
         }
         document.getElementById("conteudo").innerHTML += html;
     }
@@ -288,7 +253,9 @@ function quantidade() {
     request.send(null);
 
 
-}
+}*/
+
+
 
 function validaData() {
     var dia1 = document.getElementById("dia1").value;
@@ -323,4 +290,208 @@ function validaData() {
     }
 
     return true;
+}
+
+function validaUnidade(quantidade, unidade) {
+
+    if (quantidade == "" || quantidade == 0) {
+        return false;
+    }
+
+    for (var i = 0; i < quantidade; i++) {
+        if (!validaNum(unidade)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function validaNum(num) {
+    reg = /[0-9]+/
+    for (var k = 0; k < num.length; k++) {
+        if (!reg.test(num.charAt(k))) {
+            return false;
+        }
+    }
+    return true;
+}
+//str = str.replace(/\s/g, ' '); remover espacos
+
+function validaFisico() {
+    var str = "";
+
+    if (!validaNome(document.getElementById("nome").value)) {
+        str += "nome,";
+    }
+    if (!validaTelefone()) {
+        str += "telefone,";
+    }
+    if (!validaEmail()) {
+        str += "email,";
+    }
+    if (!validaCPF()) {
+        str += "cpf,";
+    }
+    if (!validaNome(document.getElementById("estado").value)) {
+        str += "estado,";
+    }
+    if (!validaNome(document.getElementById("cidade").value)) {
+        str += "ctelefoneidade,";
+    }
+    if (!validaNome(document.getElementById("bairro").value)) {
+        str += "bairro,";
+    }
+    if (!validaRua()) {
+        str += "rua,";
+    }
+    if (!validaNum()) {
+        str += "numero,";
+    }
+
+    if (str != "") {
+        if (str.chartAt(str.length - 1) == ',') {
+            str = str.substring(0, str.length - 2);
+        }
+        alert("Campos invalidos: " + str);
+    }
+
+}
+
+function validaJuridico() {
+    var str = "";
+
+    if (!validaNome(document.getElementById("nome").value)) {
+        str += "nome,";
+    }
+    if (!validaTelefone()) {
+        str += "telefone,";
+    }
+    if (!validaEmail()) {
+        str += "email,";
+    }
+    if (!validaCNPJ()) {
+        str += "cnpj,";
+    }
+    if (!validaNome(document.getElementById("estado").value)) {
+        str += "estado,";
+    }
+    if (!validaNome(document.getElementById("cidade").value)) {
+        str += "ctelefoneidade,";
+    }
+    if (!validaNome(document.getElementById("bairro").value)) {
+        str += "bairro,";
+    }
+    if (!validaRua()) {
+        str += "rua,";
+    }
+    if (!validaNum()) {
+        str += "numero,";
+    }
+
+    if (str != "") {
+        if (str.chartAt(str.length - 1) == ',') {
+            str = str.substring(0, str.length - 2);
+        }
+        alert("Campos invalidos: " + str);
+    }
+
+}
+
+function validaValor(valor) {
+    var reg = /[0-9]*\.[0-9]{0,2}/
+    if (reg.test(valor)) {
+        return true;
+    }
+    return false;
+}
+
+function validaPeca() {
+    var str = "";
+
+    if (!validaNome(document.getElementById("nome").value)) {
+        str += "nome,";
+    }
+    if (!validaValor(document.getElementById("valor").value)) {
+        str += "valor,";
+    }
+    if (!validaNome(document.getElementById("fornecedor").value)) {
+        str += "fornecedor,";
+    }
+
+    if (str != "") {
+        if (str.chartAt(str.length - 1) == ',') {
+            str = str.substring(0, str.length - 2);
+        }
+        alert("Campos invalidos: " + str);
+    }
+
+}
+
+function validaPlaca() {
+    var placa = document.getElementById("placa").value;
+    var reg = /[A-Z]{3}-[0-9]{4}/;
+    if (placa.length != 8) {
+        return false;
+    }
+
+    if (reg.test(placa)) {
+        return true;
+    }
+    return false;
+}
+
+function validaChassi() {
+    var chassi = document.getElementById("chassi").value;
+    var reg = /^[1-9a-zA-Z][^iIoOqQ\s!#=$%&¨'"´`^¹²³£¢¬§ºª()*+,-./:;°?@[\\\]_{|}~àáñçéèíìóòúùäëïöü]{12}[\d]{4}$/;
+    if (reg.test(chassi)) {
+        var soma = 0;
+        var ultimo = "";
+        for (var i = 0; i < chassi.length; i++) {
+            if (ultimo == chassi.charAt(i)) {
+                soma++;
+            }
+            ultimo = chassi.charAt(i);
+        }
+        if (soma > 5) {
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+
+function validaAno() {
+    var ano = document.getElementById("ano");
+    if (ano.length != 4) {
+        return false;
+    }
+    for (var i = 0; i < ano.length; i++) {
+        if (ano.charAt(i) != 0 && ano.charAt(i) != 1 && ano.charAt(i) != 2 && ano.charAt(i) != 3 && ano.charAt(i) != 4 && ano.charAt(i) != 5 && 
+                ano.charAt(i) != 6 && ano.charAt(i) != 7 && ano.charAt(i) != 8 && ano.charAt(i) != 9) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function validaVeiculo() {
+    var str = "";
+
+    if (!validaNome(document.getElementById("modelo").value)) {
+        str += "modelo,";
+    }
+    if (!validaNome(document.getElementById("marca").value)) {
+        str += "marca,";
+    }
+    if (!validaAno()) {
+        str += "ano,";
+    }
+    if (!validaChassi()) {
+        str += "chassi,";
+    }
+    if (!validaPlaca()) {
+        str += "placa,";
+    }
 }

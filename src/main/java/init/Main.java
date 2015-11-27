@@ -3,6 +3,7 @@ package init;
 import command.*;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -211,8 +212,10 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ServicoInsertCommand(request, response).getMap(), "");
+                    return new ModelAndView(new ServicoInsertCommand(request, response), "");
                 } catch (SQLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 return null;
@@ -314,7 +317,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ServicoEditCommand(request, response).getMap(), "");
+                    return new ModelAndView(new ServicoEditCommand(request, response), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }

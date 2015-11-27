@@ -6,10 +6,13 @@
 package database;
 
 import java.sql.Connection;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Servico;
@@ -19,11 +22,11 @@ import model.Servico;
  * @author michel
  */
 public class ServicoDAO {
-    
-    public ServicoDAO(){
-        
+
+    public ServicoDAO() {
+
     }
-    
+
     public void insert(Servico servico) throws SQLException {
         Connection conexao = null;
         PreparedStatement preparedStatement = null;
@@ -33,15 +36,15 @@ public class ServicoDAO {
             preparedStatement = conexao.prepareStatement("INSERT INTO servico (descricao, valor, d_inicio, d_fim, pago, funcionario_id, cliente_id, veiculo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
             preparedStatement.setString(1, servico.getDescricao());
             preparedStatement.setDouble(2, servico.getValor());
-            preparedStatement.setDate(3, servico.getD_inicio());
-            preparedStatement.setDate(4, servico.getD_fim());
+            preparedStatement.setDate(3, new java.sql.Date(servico.getD_inicio().getTime()));
+            preparedStatement.setDate(4, new java.sql.Date(servico.getD_fim().getTime()));
             preparedStatement.setBoolean(5, servico.isPago());
             preparedStatement.setInt(6, servico.getFuncionario().getId());
             preparedStatement.setInt(7, servico.getCliente().getId());
             preparedStatement.setInt(8, servico.getVeiculo().getId());
             preparedStatement.executeQuery();
         } catch (SQLException sqle) {
-            
+
         } finally {
             if (preparedStatement != null) {
                 try {
@@ -63,17 +66,17 @@ public class ServicoDAO {
             }
         }
     }
-   
+
     public ArrayList<Servico> select() throws SQLException {
         ArrayList<Servico> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
         PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id"))));
+            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), (java.util.Date) resultSet.getDate("d_inicio"), (java.util.Date) resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id"))));
         }
         preparedStatement.close();
-        
+
         conexao.close();
         return vet;
     }
@@ -85,55 +88,54 @@ public class ServicoDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             servico = new Servico();
             if (resultSet.next()) {
-                
-                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id")));
-            }else {
-                
+                servico = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), (java.util.Date) resultSet.getDate("d_inicio"), (java.util.Date) resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id")));
+            } else {
+
             }
         }
         return servico;
     }
-    
+
     public Servico ultimo() throws SQLException {
         Servico ultimo = new Servico();
         Connection conexao = new Conexao().getConexao();
         PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM servico ORDER BY id DESC LIMIT 1;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            ultimo = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id")));
+            ultimo = new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), (java.util.Date) resultSet.getDate("d_inicio"), (java.util.Date) resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id")));
         }
         preparedStatement.close();
-        
+
         conexao.close();
         return ultimo;
     }
-    
+
     public void update(Servico servico) throws SQLException {
-         
+
         try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico SET descricao = ?, valor = ?, d_inicio = ?, d_fim = ?, funcionario_id = ?, cliente_id = ?, veiculo_id = ? WHERE id = ?;")) {;
             preparedStatement.setString(1, servico.getDescricao());
             preparedStatement.setDouble(2, servico.getValor());
-            preparedStatement.setDate(3, servico.getD_inicio());
-            preparedStatement.setDate(4, servico.getD_fim());
+            preparedStatement.setDate(3, (java.sql.Date)servico.getD_inicio());
+            preparedStatement.setDate(4, (java.sql.Date)servico.getD_fim());
             preparedStatement.setInt(6, servico.getFuncionario().getId());
             preparedStatement.setInt(7, servico.getCliente().getId());
             preparedStatement.setInt(8, servico.getVeiculo().getId());
             preparedStatement.setInt(9, servico.getId());
             preparedStatement.executeUpdate();
-         
+
         }
     }
-    
+
     public void pago(int id) throws SQLException {
-         
+
         try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE servico SET pago = ? WHERE id = ?;")) {;
             preparedStatement.setBoolean(1, true);
             preparedStatement.setInt(2, id);
             preparedStatement.executeUpdate();
-         
+
         }
     }
-    
+
     public ArrayList<Servico> filtro(String nome) throws SQLException {
         ArrayList<Servico> vet = new ArrayList();
         Connection conexao = new Conexao().getConexao();
@@ -141,10 +143,10 @@ public class ServicoDAO {
         preparedStatement.setString(1, "%" + nome + "%");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), resultSet.getDate("d_inicio"), resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id"))));
+            vet.add(new Servico(resultSet.getInt("id"), resultSet.getString("descricao"), resultSet.getDouble("valor"), (java.util.Date) resultSet.getDate("d_inicio"), (java.util.Date) resultSet.getDate("d_fim"), resultSet.getBoolean("pago"), new FuncionarioDAO().selectById(resultSet.getInt("funcionario_id")), new ClienteDAO().selectById(resultSet.getInt("cliente_id")), new VeiculoDAO().selectById(resultSet.getInt("veiculo_id"))));
         }
         preparedStatement.close();
-        
+
         conexao.close();
         return vet;
     }

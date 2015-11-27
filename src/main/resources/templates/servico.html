@@ -42,8 +42,8 @@
                 <th colspan='2'>A&ccedil;&atilde;o</th>
                 </head>
                 <tbody>
+                    {{#servicos}}
                     <tr>
-                        {{#servicos}}
                         <td><a href="/servico_peca/{{id}}" class="views">{{descricao}}</a></td>
                         <td>{{valor}}</td>
 
@@ -60,8 +60,8 @@
                         <td>{{d_inicio}}</td>
                         <td>{{d_fim}}</td>
                         <td><a href="/servicoupdate/{{id}}" class="views">Editar</a></td>
-                        {{/servicos}}
                     </tr>
+                    {{/servicos}}
                 </tbody>
             </table>
         </div>
