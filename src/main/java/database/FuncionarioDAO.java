@@ -78,7 +78,7 @@ public class FuncionarioDAO {
         PreparedStatement preparedStatement = conexao.prepareStatement("SELECT * FROM funcionario WHERE ativo = true;");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
-            vet.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
+            vet.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("telefone"), resultSet.getString("email"), resultSet.getString("cpf"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
         }
         preparedStatement.close();
         
@@ -94,7 +94,7 @@ public class FuncionarioDAO {
             funcionario = new Funcionario();
             if (resultSet.next()) {
                 
-                funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
+                funcionario = new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("telefone"), resultSet.getString("email"), resultSet.getString("cpf"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id")));
             }else {
                 
             }
@@ -124,8 +124,7 @@ public class FuncionarioDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             
             while(resultSet.next()){
-                
-            funcionario.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("email"), resultSet.getString("cpf"), resultSet.getString("telefone"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
+            funcionario.add(new Funcionario(resultSet.getInt("id"), resultSet.getString("nome"), resultSet.getString("telefone"), resultSet.getString("email"), resultSet.getString("cpf"), new EnderecoDAO().selectById(resultSet.getInt("endereco_id"))));
             }
         }
         return funcionario;

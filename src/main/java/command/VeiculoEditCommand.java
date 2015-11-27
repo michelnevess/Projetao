@@ -29,8 +29,7 @@ public class VeiculoEditCommand extends Command {
         
         veiculo.setId(Integer.parseInt(request.queryParams("id")));
         new VeiculoDAO().update(veiculo);
-            map.put("message", "Voce acaba de editar o Veiculo");
-        
+        response.redirect("/veiculo");
     }
 
 }

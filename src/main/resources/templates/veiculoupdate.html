@@ -31,7 +31,7 @@
             </div>
             <div id="inferior">
                 <br>
-                <form name = "form1" class="form1"method="get" action="/veiculoedit/">
+                <form name = "form1" class="form1" method="post" action="/veiculoedit/">
                     <table>
                         <tbody>
                         <tr>
@@ -51,14 +51,14 @@
                         <tr>
                             <td class="normal">Placa: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="placa" name="placa" value="{{placa}}"><!--tamanho7-->
+                                <input type="text" size="35" id="placa" name="placa" value="{{placa}}">
                             </td>
                         </tr>
 
                         <tr>
                             <td class="normal">Chassi: </td>
                             <td class="normal">
-                                <input type="text" size="35" id="chassi" name="chassi" value="{{chassi}}"><!--tamanho 17-->
+                                <input type="text" size="35" id="chassi" name="chassi" value="{{chassi}}">
                             </td>
                         </tr>
 
@@ -85,8 +85,8 @@
                         </tbody>
                     </table>
                     <br>
-                    <input type="hidden" value="{{id}}">
-                    <input id="criar" type="submit" value="Alterar">
+                    <input type="hidden" value="{{id}}" id="id" name="id">
+                    <button id="criar" type="button" onclick="validaVeiculo()">Alterar</button>
                     </div>
                     </div>
                 </form>

@@ -40,7 +40,7 @@ public class VeiculoInsertCommand extends Command {
         
         new VeiculoDAO().insert(veiculo);
         
-        response.redirect("/");
+        response.redirect("/veiculo");
     }    
     
 

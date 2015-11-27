@@ -49,10 +49,12 @@ public class ClienteInsertCommand extends Command {
         
         if(request.queryParams("tipo").equals("f")){
             cliente.setCpf(request.queryParams("cpf").trim());
+            cliente.setFisico(true);
         }else {
             cliente.setCnpj(request.queryParams("cnpj").trim());
+            cliente.setFisico(false);
         }
-        cliente.setFisico(Boolean.parseBoolean(request.queryParams("fisico")));
+        
         cliente.setEndereco(endereco);
         
         new ClienteDAO().insert(cliente);

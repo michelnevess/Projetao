@@ -21,12 +21,15 @@ function atualizaFuncionario() {
     if (request.readyState === 4) {
         JSONobject = JSON.parse(request.responseText);
         var html = "";
+        console.log(JSONobject.length);
+        document.getElementById("conteudo").innerHTML = "";
         for (var i = 0; i < JSONobject.length; i++) {
             html += "<tr><td>" + JSONobject[i].nome + "</td>";
             html += "<td>" + JSONobject[i].telefone + "</td>";
             html += "<td>" + JSONobject[i].email + "</td>";
             html += "<td>" + JSONobject[i].cpf + "</td>";
-            html += "<td>" + JSONobject[i].endereco + "</td>";
+            html += "<td>" + JSONobject[i].endereco.estado +"," + JSONobject[i].endereco.cidade +",";
+            html += JSONobject[i].endereco.bairro +"," + JSONobject[i].endereco.rua +","+ JSONobject[i].endereco.numero +"," + JSONobject[i].endereco.complemento+ "</td>";
             html += "<td><a href=\"/funcionarioupdate/" + JSONobject[i].id + "\" class=\"views\">Editar</a></td>";
             html += "<td><a href=\"/funcionariodelete/" + JSONobject[i].id + "\" class=\"views\">Remover</a></td>";
         }
@@ -35,13 +38,15 @@ function atualizaFuncionario() {
     }
 }
 
-function ajaxfuncionario() {
+function ajaxFuncionario() {
     var valor = document.getElementById("nome").value;
+    if(valor!=""){
     var url = "http://localhost:4567/filtro2/" + valor;
     createRequest();
     request.open("GET", url, true);
     request.onreadystatechange = atualizaFuncionario;
     request.send(null);
+    }
 
 }
 
@@ -49,10 +54,10 @@ function resultadoCnpj() {
     if (request.readyState === 4) {
         var teste = request.responseText;
         var html = "";
-        if (validaCNPJ() == false || teste == false) {
-            html = "CNPJ Invalido";
-        } else {
+        if (validaCNPJ() == true &&  teste == "false"){
             html = "CNPJ Valido";
+        } else {
+            html = "CNPJ Invalido";
         }
 
         document.getElementById("conteudo").innerHTML += html;
@@ -73,6 +78,13 @@ function ajaxCNPJ(cnpj) {
 
 }
 
+function teste(cpf){
+    var reg = /[0-9]{11}/;
+    if(reg.test(cpf)){
+        return true;
+    }
+    return false;
+}
 
 
 function validaCPF() {
@@ -169,7 +181,8 @@ function validaCNPJ() {
     return true;
 }
 
-function validaEmail(email) {
+function validaEmail() {
+    var email = document.getElementById("email").value;
     var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
     if (reg.test(email)) {
         return true;
@@ -179,8 +192,9 @@ function validaEmail(email) {
     }
 }
 
-function validaTelefone(telefone) {
-    var reg = /^[1-9]{2}[2-9][0-9]{7,8}$/
+function validaTelefone() {
+    var telefone = document.getElementById("telefone").value;
+    var reg = /^[1-9]{2}[2-9][0-9]{7,8}$/;
     if (reg.test(telefone)) {
         return true;
     }
@@ -190,18 +204,7 @@ function validaTelefone(telefone) {
 }
 
 function validaNome(nome) {
-    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    if (reg.test(nome)) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function validaBairro() {
-    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
-    var nome = document.getElementById("bairro").value;
+    var reg = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/;
     if (reg.test(nome)) {
         return true;
     }
@@ -222,38 +225,6 @@ function validaRua() {
 }
 
 
-/*function adiciona() {
-    if (request.readyState === 4) {
-        JSONobject = JSON.parse(request.responseText);
-        var quantidad = document.getElementById("tipos").value;
-        console.log(quantidad);
-        var html = "";
-        for (var k = 0; k < quantidad; k++) {
-            html += "<tr>";
-            for (var i = 0; i < JSONobject.length; i++) {
-                html += "<td>Peca: </td><td class=\"normal\"><select id=\"peca\" name=\"peca\">";
-                html += "<option value=\"" + JSONobject[i].id + "\">" + JSONobject[i].nome + "</option></select></td>";
-                html += "<td class=\"normal\">Unidade(s): </td><td class=\"normal\">";
-                html += "<input type=\"text\" size=\"10\" id=\"unidade\" name=\"unidade\"></td>";
-            }
-            html += "</tr>";
-
-        }
-        document.getElementById("conteudo").innerHTML += html;
-    }
-}
-
-function quantidade() {
-    document.getElementById("conteudo").innerHTML = "";
-
-    var url = "http://localhost:4567/lipeca";
-    createRequest();
-    request.open("GET", url, true);
-    request.onreadystatechange = adiciona;
-    request.send(null);
-
-
-}*/
 
 
 
@@ -265,6 +236,9 @@ function validaData() {
     var ano1 = document.getElementById("ano1").value;
     var ano2 = document.getElementById("ano2").value;
 
+    if(ano1<2015){
+        return false;
+    }
     if (ano1 > ano2) {
         return false;
     }
@@ -292,23 +266,12 @@ function validaData() {
     return true;
 }
 
-function validaUnidade(quantidade, unidade) {
-
-    if (quantidade == "" || quantidade == 0) {
+function validaNum(num) {
+    if(num==""){
         return false;
     }
-
-    for (var i = 0; i < quantidade; i++) {
-        if (!validaNum(unidade)) {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-function validaNum(num) {
-    reg = /[0-9]+/
+    reg = /[0-9]+/;
+    num = ""+num;
     for (var k = 0; k < num.length; k++) {
         if (!reg.test(num.charAt(k))) {
             return false;
@@ -316,7 +279,6 @@ function validaNum(num) {
     }
     return true;
 }
-//str = str.replace(/\s/g, ' '); remover espacos
 
 function validaFisico() {
     var str = "";
@@ -337,7 +299,7 @@ function validaFisico() {
         str += "estado,";
     }
     if (!validaNome(document.getElementById("cidade").value)) {
-        str += "ctelefoneidade,";
+        str += "cidade,";
     }
     if (!validaNome(document.getElementById("bairro").value)) {
         str += "bairro,";
@@ -345,15 +307,14 @@ function validaFisico() {
     if (!validaRua()) {
         str += "rua,";
     }
-    if (!validaNum()) {
+    if (!validaNum(document.getElementById("numero").value)) {
         str += "numero,";
     }
 
     if (str != "") {
-        if (str.chartAt(str.length - 1) == ',') {
-            str = str.substring(0, str.length - 2);
-        }
         alert("Campos invalidos: " + str);
+    }else{
+        document.form1.submit();
     }
 
 }
@@ -377,7 +338,7 @@ function validaJuridico() {
         str += "estado,";
     }
     if (!validaNome(document.getElementById("cidade").value)) {
-        str += "ctelefoneidade,";
+        str += "cidade,";
     }
     if (!validaNome(document.getElementById("bairro").value)) {
         str += "bairro,";
@@ -385,7 +346,7 @@ function validaJuridico() {
     if (!validaRua()) {
         str += "rua,";
     }
-    if (!validaNum()) {
+    if (!validaNum(document.getElementById("numero").value)) {
         str += "numero,";
     }
 
@@ -394,19 +355,24 @@ function validaJuridico() {
             str = str.substring(0, str.length - 2);
         }
         alert("Campos invalidos: " + str);
+    }else{
+        document.form1.submit();
     }
 
 }
 
 function validaValor(valor) {
-    var reg = /[0-9]*\.[0-9]{0,2}/
+    if(valor  == ""){
+        return false;
+    }
+    var reg = /[0-9]*/
     if (reg.test(valor)) {
         return true;
     }
     return false;
 }
 
-function validaPeca() {
+function validaPeca(){ 
     var str = "";
 
     if (!validaNome(document.getElementById("nome").value)) {
@@ -463,7 +429,7 @@ function validaChassi() {
 
 
 function validaAno() {
-    var ano = document.getElementById("ano");
+    var ano = document.getElementById("ano").value;
     if (ano.length != 4) {
         return false;
     }
@@ -494,4 +460,30 @@ function validaVeiculo() {
     if (!validaPlaca()) {
         str += "placa,";
     }
+    if (str != "") {
+        alert("Campos invalidos: " + str);
+    }else{
+        document.form1.submit();
+    }
+}
+
+function validaServico(){
+    var str = "";
+    if(!validaValor(document.getElementById("valor").value)){
+        str += "valor,";
+    }
+    if(!validaNum(document.getElementById("unidade").value)){
+        str += "unidade,";
+    }
+    if(!validaData()){
+        str += "datas,";
+    }
+    if (str != "") {
+        if (str.charAt(str.length - 1) === ',') {
+            str = str.substring(0, str.length - 2);
+        }
+        alert("Campos invalidos: " + str);
+    }else{
+    document.form1.submit();
+}
 }

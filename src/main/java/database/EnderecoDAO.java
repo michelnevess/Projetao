@@ -103,17 +103,18 @@ public class EnderecoDAO {
 
     public void update(Endereco endereco) throws SQLException {
          
-        try (Connection conexao = new Conexao().getConexao(); PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE endereco SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE id = ?;")) {;
+        Connection conexao = new Conexao().getConexao(); 
+        PreparedStatement preparedStatement = conexao.prepareStatement("UPDATE endereco SET estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, complemento = ? WHERE id = ?;");
             preparedStatement.setString(1, endereco.getEstado());
             preparedStatement.setString(2, endereco.getCidade());
             preparedStatement.setString(3, endereco.getBairro());
             preparedStatement.setString(4, endereco.getRua());
             preparedStatement.setString(5, endereco.getNumero());
             preparedStatement.setString(6, endereco.getComplemento());
-            preparedStatement.setInt(7, endereco.getId() );
+            preparedStatement.setInt(7, endereco.getId());
             preparedStatement.executeUpdate();
-         
-        }
+         conexao.close();
+        
     }
 
     

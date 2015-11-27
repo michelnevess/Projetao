@@ -27,7 +27,7 @@ public class PagarServicoCommand extends Command {
         } catch (SQLException ex) {
             Logger.getLogger(PagarServicoCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
-        response.redirect("/");
+        response.redirect("/servico_peca/"+Integer.parseInt(request.params(":id")));
     }
 
 }

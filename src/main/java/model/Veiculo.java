@@ -10,7 +10,7 @@ package model;
  * @author michel
  */
 public class Veiculo {
-    
+
     private int id;
     private String modelo, marca, ano, placa, chassi;
     private Cliente cliente;
@@ -25,7 +25,8 @@ public class Veiculo {
         this.cliente = cliente;
     }
 
-    public Veiculo() {}
+    public Veiculo() {
+    }
 
     public int getId() {
         return id;
@@ -33,6 +34,7 @@ public class Veiculo {
 
     public void setId(int id) {
         this.id = id;
+
     }
 
     public String getModelo() {
@@ -41,6 +43,7 @@ public class Veiculo {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+
     }
 
     public String getMarca() {
@@ -48,7 +51,9 @@ public class Veiculo {
     }
 
     public void setMarca(String marca) {
+
         this.marca = marca;
+
     }
 
     public String getAno() {
@@ -56,7 +61,9 @@ public class Veiculo {
     }
 
     public void setAno(String ano) {
-        this.ano = ano;
+        if (ano.matches("[0-9]{3}")) {
+            this.ano = ano;
+        }
     }
 
     public String getPlaca() {
@@ -65,6 +72,7 @@ public class Veiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+
     }
 
     public String getChassi() {
@@ -73,6 +81,7 @@ public class Veiculo {
 
     public void setChassi(String chassi) {
         this.chassi = chassi;
+
     }
 
     public Cliente getCliente() {
@@ -82,11 +91,5 @@ public class Veiculo {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    public String getStr() {
-        return modelo + ", " + marca + ", " + ano + ", " + placa + ", " + chassi + ", " + cliente.getNome();
-    }
-    
-    
-    
+
 }

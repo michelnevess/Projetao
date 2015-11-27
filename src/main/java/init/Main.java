@@ -25,7 +25,6 @@ public class Main {
         
         get("/filtro1/:valor", (req, res) -> new Filtro1(req, res).getTeste());
         get("/filtro2/:valor", (req, res) -> new Filtro2(req, res).getResposta());
-        get("/lipeca", (req, res) -> new Peca(req, res).getResposta());
         
         
         get("/", new TemplateViewRoute() {
@@ -144,11 +143,11 @@ public class Main {
             }
         }, new MustacheTemplateEngine());
 
-        post("/clienteinsert", new TemplateViewRoute() {
+        post("/clienteinsert/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new ClienteInsertCommand(request, response), "/");
+                    return new ModelAndView(new ClienteInsertCommand(request, response), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -156,7 +155,7 @@ public class Main {
             }
         }, new MustacheTemplateEngine());
         
-        post("/enderecoinsert", new TemplateViewRoute() {
+        post("/enderecoinsert/", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 return new ModelAndView(new Command(request, response), "enderecocadastro.html");
@@ -336,7 +335,7 @@ public class Main {
             @Override
             public ModelAndView handle(Request request, Response response) {
                 try {
-                    return new ModelAndView(new VeiculoEditCommand(request, response).getMap(), "");
+                    return new ModelAndView(new VeiculoEditCommand(request, response), "");
                 } catch (SQLException ex) {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -347,7 +346,7 @@ public class Main {
         get("/pagar/:id", new TemplateViewRoute() {
             @Override
             public ModelAndView handle(Request request, Response response) {
-                return new ModelAndView(new PagarServicoCommand(request, response).getMap(), "");
+                return new ModelAndView(new PagarServicoCommand(request, response), "");
             }
         }, new MustacheTemplateEngine());
         

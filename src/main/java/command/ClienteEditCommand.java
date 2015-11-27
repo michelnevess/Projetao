@@ -38,9 +38,14 @@ public class ClienteEditCommand extends Command {
         cliente.setNome(request.queryParams("nome"));
         cliente.setTelefone(request.queryParams("telefone"));
         cliente.setEmail(request.queryParams("email"));
-        cliente.setCpf(request.queryParams("cpf"));
-        cliente.setCnpj(request.queryParams("cnpj"));
-        cliente.setFisico(Boolean.parseBoolean(request.queryParams("fisico")));
+        
+        if(request.queryParams("tipo").equals("f")){
+            cliente.setCpf(request.queryParams("cpf").trim());
+            cliente.setFisico(true);
+        }else {
+            cliente.setCnpj(request.queryParams("cnpj").trim());
+            cliente.setFisico(false);
+        }
         cliente.setEndereco(endereco);
         cliente.setId(Integer.parseInt(request.queryParams("id")));
         new ClienteDAO().update(cliente);

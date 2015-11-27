@@ -27,7 +27,7 @@ public class VeiculoScreenUpdateCommand extends Command {
          ArrayList<Cliente> clientes = null;
         try {
             veiculo = new VeiculoDAO().selectById(Integer.parseInt(request.params(":id")));
-            // PROBLEMA
+            map.put("id", veiculo.getId());
             map.put("modelo", veiculo.getModelo());
             map.put("marca", veiculo.getMarca());
             map.put("ano", veiculo.getAno());

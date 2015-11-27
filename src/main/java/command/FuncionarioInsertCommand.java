@@ -50,7 +50,7 @@ public class FuncionarioInsertCommand extends Command {
         
         new FuncionarioDAO().insert(funcionario);
         
-        map.put("message", "Voce acaba de inserir o funcionario com sucesso!");
+        response.redirect("/funcionario");
     }    
     
 

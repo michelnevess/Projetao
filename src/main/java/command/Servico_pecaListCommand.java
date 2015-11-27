@@ -29,6 +29,8 @@ public class Servico_pecaListCommand extends Command {
                 map.put("servico_pecas", servico_pecas);
                 map.put("mao", valor);
                 map.put("total", new Servico_pecaDAO().total(Integer.parseInt(request.params(":id"))));
+                map.put("pago", new ServicoDAO().taPago(Integer.parseInt(request.params(":id"))));
+                map.put("id", Integer.parseInt(request.params(":id")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Servico_pecaListCommand.class.getName()).log(Level.SEVERE, null, ex);

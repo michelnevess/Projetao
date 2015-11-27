@@ -150,4 +150,18 @@ public class ServicoDAO {
         conexao.close();
         return vet;
     }
+    
+    public boolean taPago(int id) throws SQLException{
+        Connection conexao = new Conexao().getConexao();
+        PreparedStatement preparedStatement = conexao.prepareStatement("SELECT pago FROM servico WHERE id = ?;");
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            return resultSet.getBoolean("pago");
+        }
+        preparedStatement.close();
+
+        conexao.close();
+        return false;
+    }
 }

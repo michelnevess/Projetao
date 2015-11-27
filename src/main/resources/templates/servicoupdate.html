@@ -146,10 +146,19 @@
                             </tr>
 
                             <tr>
-                                <td class="normal">Unidade(s): </td>
-                                <td class="normal">
-                                    <input type="text" size="10" id="unidade" name="unidade">
+                            <td class="normal">Pe&ccedil;a: </td>
+                            <td>
+                                
+                                <select id="peca" name="peca">
+                                    {{#pecas}}
+                                <option value="{{id}}">{{nome}}</option>
+                                {{/pecas}}
+                                </select>
+                                
                                 </td>
+                            <td class="normal">
+                                <input type="text" size="5" id="unidade" name="unidade">
+                            </td>
                             </tr>
                         </div>
                     </table>
@@ -169,7 +178,7 @@
                     </table>
                     <input type="hidden" id="id" name="id"value="{{id}}">
                     <br><br>
-                    <input id="criar" type="submit" value="Alterar">
+                    <button id="criar" type="button" onclick="validaServico">Alterar</button>
                     </div>
                     </div>
                 </form>

@@ -16,6 +16,7 @@ public class Filtro2 extends Command {
         super(request, response);
         JSONArray jsonArray = new JSONArray(new FuncionarioDAO().filtro(request.params(":valor")));
         this.resposta = jsonArray.toString();
+        
     }
     public String getResposta() {
         return this.resposta;

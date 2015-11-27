@@ -43,7 +43,7 @@ public class FuncionarioEditCommand extends Command {
         funcionario.setId(Integer.parseInt(request.queryParams("id")));
         new FuncionarioDAO().update(funcionario);
             
-        
+        response.redirect("/funcionario");
     }
 
 }

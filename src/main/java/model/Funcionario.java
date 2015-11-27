@@ -10,6 +10,7 @@ package model;
  * @author michel
  */
 public class Funcionario {
+
     private int id;
     private String nome, telefone, email, cpf;
     private Endereco endereco;
@@ -26,8 +27,7 @@ public class Funcionario {
     public Funcionario() {
 
     }
-
-    public int getId() {
+public int getId() {
         return id;
     }
 
@@ -41,14 +41,6 @@ public class Funcionario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getEmail() {
@@ -67,6 +59,14 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
     public Endereco getEndereco() {
         return endereco;
     }
@@ -75,6 +75,6 @@ public class Funcionario {
         this.endereco = endereco;
     }
     
-    
-    
+
+
 }

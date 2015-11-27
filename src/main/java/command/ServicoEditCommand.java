@@ -32,11 +32,11 @@ public class ServicoEditCommand extends Command {
                 Servico servico = new Servico();
         
         Calendar c1 = Calendar.getInstance(); 
-        c1.set(Integer.parseInt(request.queryParams("ano1")),Integer.parseInt(request.queryParams("mes1")), Integer.parseInt(request.queryParams("dia1"))); 
+        c1.set(Integer.parseInt(request.queryParams("ano1")),Integer.parseInt(request.queryParams("mes1")) -1, Integer.parseInt(request.queryParams("dia1"))); 
         java.util.Date d1 = c1.getTime();
         
         Calendar c2 = Calendar.getInstance(); 
-        c2.set(Integer.parseInt(request.queryParams("ano2")), Integer.parseInt(request.queryParams("mes2")), Integer.parseInt(request.queryParams("dia2")));
+        c2.set(Integer.parseInt(request.queryParams("ano2")), Integer.parseInt(request.queryParams("mes2")) -1, Integer.parseInt(request.queryParams("dia2")));
         java.util.Date d2 = c2.getTime();
         
         servico.setD_inicio(d1);
@@ -47,34 +47,17 @@ public class ServicoEditCommand extends Command {
         servico.setVeiculo(new VeiculoDAO().selectById(Integer.parseInt(request.queryParams("veiculo"))));
         servico.setDescricao(request.queryParams("descricao"));
         
-        /*for (int i = 0; i < Integer.parseInt(request.queryParams("tipos")); i++){
-            Servico_peca sp = new Servico_peca();
-            Peca peca = new PecaDAO().selectById(Integer.parseInt(request.queryParams("peca")));
-        
-            sp.setServico(new ServicoDAO().ultimo().getId());
-            sp.setQuantidade(Integer.parseInt(request.queryParams("unidade")));
-            sp.setPeca(peca);
-            sp.setValor(peca.getValor());
-            
-            new Servico_pecaDAO().insert(sp);
-        }*/
         
         servico.setId(Integer.parseInt(request.queryParams("id")));
         
         new ServicoDAO().update(servico);
-        
-        /*for (int i = 0; i < Integer.parseInt(request.queryParams("tipos")); i++){
-            Servico_peca sp = new Servico_peca();
-            Peca peca = new PecaDAO().selectById(Integer.parseInt(request.queryParams("peca")));
-        
-            sp.setServico(new ServicoDAO().ultimo().getId());
+        Servico_peca sp = new Servico_peca();
+        Peca peca = new PecaDAO().selectById(Integer.parseInt(request.queryParams("peca")));
+        sp.setServico(servico.getId());
             sp.setQuantidade(Integer.parseInt(request.queryParams("unidade")));
             sp.setPeca(peca);
             sp.setValor(peca.getValor());
-            sp.setId(Integer.parseInt(request.queryParams("peca_id")));
-            new Servico_pecaDAO().update(sp);
-        }*/
-        
+            new Servico_pecaDAO().update(sp);        
         
             response.redirect("/");
         
